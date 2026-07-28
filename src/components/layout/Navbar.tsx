@@ -1,0 +1,82 @@
+"use client"
+
+import Link from "next/link"
+import { useTheme } from "next-themes"
+import { Calculator, Moon, Sun, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
+
+export function Navbar() {
+  const { setTheme, theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return (
+    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto px-4 sm:px-8 flex h-16 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="bg-emerald-600 p-1.5 rounded-md text-white">
+              <Calculator className="h-5 w-5" />
+            </div>
+            <span className="inline-block font-bold text-xl tracking-tight">FinCalc</span>
+          </Link>
+        </div>
+        
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <Link href="/calculators/sip" className="transition-colors hover:text-emerald-600 text-foreground/80">SIP</Link>
+          <Link href="/calculators/fd" className="transition-colors hover:text-emerald-600 text-foreground/80">FD</Link>
+          <Link href="/calculators/loan-emi" className="transition-colors hover:text-emerald-600 text-foreground/80">Loan EMI</Link>
+          <Link href="/calculators/inflation" className="transition-colors hover:text-emerald-600 text-foreground/80">Inflation</Link>
+          
+          {mounted && (
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Toggle theme"
+              className="mr-6"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          )}
+        </div>
+
+        {/* Mobile Nav Toggle */}
+        <div className="flex items-center md:hidden gap-2">
+          {mounted && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+          )}
+          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-b bg-background px-4 py-4 space-y-3">
+          <Link href="/calculators/sip" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>SIP Calculator</Link>
+          <Link href="/calculators/fd" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>FD Calculator</Link>
+          <Link href="/calculators/loan-emi" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Loan EMI Calculator</Link>
+          <Link href="/calculators/inflation" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Inflation Calculator</Link>
+        </div>
+      )}
+    </nav>
+  )
+}
