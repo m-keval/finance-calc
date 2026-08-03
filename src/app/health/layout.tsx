@@ -1,20 +1,23 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { TrendingUp, PiggyBank, PieChart, Calculator, Target, ArrowUpRight } from "lucide-react";
-import { ReactNode } from "react";
+import { Activity, Heart, Flame, Percent, Scale, Droplet } from "lucide-react";
 
-export default function CalculatorsLayout({ children }: { children: ReactNode }) {
+export default function HealthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
-  
-  const calculators = [
-    { name: "SIP Calculator", href: "/calculators/sip", icon: <TrendingUp className="w-5 h-5" /> },
-    { name: "Step-up SIP", href: "/calculators/step-up-sip", icon: <ArrowUpRight className="w-5 h-5" /> },
-    { name: "Goal Planning", href: "/calculators/goal", icon: <Target className="w-5 h-5" /> },
-    { name: "FD Calculator", href: "/calculators/fd", icon: <PiggyBank className="w-5 h-5" /> },
-    { name: "Loan EMI Calculator", href: "/calculators/loan-emi", icon: <PieChart className="w-5 h-5" /> },
-    { name: "Inflation Calculator", href: "/calculators/inflation", icon: <Calculator className="w-5 h-5" /> },
+
+  const healthCalculators = [
+    { name: "BMI Calculator", href: "/health/bmi", icon: <Activity className="w-5 h-5" /> },
+    { name: "BMR Calculator", href: "/health/bmr", icon: <Heart className="w-5 h-5" /> },
+    { name: "Calorie Calculator", href: "/health/calories", icon: <Flame className="w-5 h-5" /> },
+    { name: "Body Fat %", href: "/health/body-fat", icon: <Percent className="w-5 h-5" /> },
+    { name: "Ideal Weight", href: "/health/ideal-weight", icon: <Scale className="w-5 h-5" /> },
+    { name: "Water Intake", href: "/health/water-intake", icon: <Droplet className="w-5 h-5" /> },
   ];
 
   return (
@@ -22,9 +25,9 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
       {/* Sidebar Navigation */}
       <aside className="w-full lg:w-64 shrink-0">
         <div className="sticky top-24 bg-card border rounded-xl p-4">
-          <h3 className="font-semibold text-lg mb-4 px-2 tracking-tight">Calculators</h3>
+          <h3 className="font-semibold text-lg mb-4 px-2 tracking-tight">Health Metrics</h3>
           <nav className="flex flex-col gap-1">
-            {calculators.map((calc) => {
+            {healthCalculators.map((calc) => {
               const isActive = pathname === calc.href;
               return (
                 <Link 
@@ -47,10 +50,10 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 min-w-0">
+      {/* Main Content Area */}
+      <div className="flex-1 min-w-0">
         {children}
-      </main>
+      </div>
     </div>
   );
 }

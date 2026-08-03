@@ -42,6 +42,106 @@ export function generateSIPChartData(monthlyInvestment: number, annualRate: numb
   return data;
 }
 
+export function calculateStepUpSIP(initialMonthlyInvestment: number, annualRate: number, years: number, stepUpPercentage: number) {
+  const monthlyRate = annualRate / 12 / 100;
+  let totalInvestment = 0;
+  let futureValue = 0;
+  let currentMonthlyInvestment = initialMonthlyInvestment;
+
+  for (let year = 1; year <= years; year++) {
+    for (let month = 1; month <= 12; month++) {
+      totalInvestment += currentMonthlyInvestment;
+      futureValue = (futureValue + currentMonthlyInvestment) * (1 + monthlyRate);
+    }
+    currentMonthlyInvestment = currentMonthlyInvestment * (1 + stepUpPercentage / 100);
+  }
+
+  const estReturns = futureValue - totalInvestment;
+
+  return {
+    totalInvestment: Math.round(totalInvestment),
+    estReturns: Math.round(estReturns),
+    totalValue: Math.round(futureValue),
+  };
+}
+
+export function generateStepUpSIPChartData(initialMonthlyInvestment: number, annualRate: number, years: number, stepUpPercentage: number) {
+  const data = [];
+  const monthlyRate = annualRate / 12 / 100;
+  let totalInvestment = 0;
+  let futureValue = 0;
+  let currentMonthlyInvestment = initialMonthlyInvestment;
+
+  for (let year = 1; year <= years; year++) {
+    for (let month = 1; month <= 12; month++) {
+      totalInvestment += currentMonthlyInvestment;
+      futureValue = (futureValue + currentMonthlyInvestment) * (1 + monthlyRate);
+    }
+    
+    data.push({
+      year,
+      invested: Math.round(totalInvestment),
+      returns: Math.round(futureValue - totalInvestment),
+      totalValue: Math.round(futureValue),
+    });
+
+    currentMonthlyInvestment = currentMonthlyInvestment * (1 + stepUpPercentage / 100);
+  }
+  
+  return data;
+}
+
+export function calculateLumpsum(principal: number, annualRate: number, years: number) {
+  const r = annualRate / 100;
+  const futureValue = principal * Math.pow(1 + r, years);
+  const estReturns = futureValue - principal;
+
+  return {
+    totalInvestment: principal,
+    estReturns: Math.round(estReturns),
+    totalValue: Math.round(futureValue),
+  };
+}
+
+export function generateLumpsumChartData(principal: number, annualRate: number, years: number) {
+  const data = [];
+  const r = annualRate / 100;
+  
+  for (let year = 1; year <= years; year++) {
+    const futureValue = principal * Math.pow(1 + r, year);
+    data.push({
+      year: year,
+      invested: principal,
+      returns: Math.round(futureValue - principal),
+      totalValue: Math.round(futureValue),
+    });
+  }
+  
+  return data;
+}
+
+// Goal Planning Math
+export function calculateGoalSIP(targetAmount: number, annualRate: number, years: number) {
+  const months = years * 12;
+  const monthlyRate = annualRate / 12 / 100;
+  
+  const compoundFactor = ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+  const requiredSIP = targetAmount / compoundFactor;
+  
+  return {
+    requiredSIP: Math.ceil(requiredSIP),
+  };
+}
+
+export function calculateGoalLumpsum(targetAmount: number, annualRate: number, years: number) {
+  const r = annualRate / 100;
+  const requiredLumpsum = targetAmount / Math.pow(1 + r, years);
+  
+  return {
+    requiredLumpsum: Math.ceil(requiredLumpsum),
+  };
+}
+
 // FD Math
 export function calculateFD(principal: number, annualRate: number, years: number) {
   const n = 4; // Quarterly compounding

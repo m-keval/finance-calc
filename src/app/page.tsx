@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calculator, PieChart, TrendingUp, PiggyBank, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Calculator, PieChart, TrendingUp, PiggyBank, ShieldCheck, Zap, Target, ArrowUpRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,6 +10,18 @@ export default function Home() {
       description: "Calculate how much your monthly investments can grow over time with the power of compounding.",
       icon: <TrendingUp className="h-6 w-6 text-emerald-500" />,
       href: "/calculators/sip",
+    },
+    {
+      title: "Step-up SIP",
+      description: "Supercharge your wealth by increasing your SIP amount every year as your income grows.",
+      icon: <ArrowUpRight className="h-6 w-6 text-emerald-500" />,
+      href: "/calculators/step-up-sip",
+    },
+    {
+      title: "Goal Planning",
+      description: "Work backwards from your target amount to find out exactly how much you need to invest today.",
+      icon: <Target className="h-6 w-6 text-emerald-500" />,
+      href: "/calculators/goal",
     },
     {
       title: "FD Calculator",
@@ -59,18 +71,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Calculators Grid */}
-      <section id="calculators" className="py-20 bg-muted/30">
+      {/* Finance Calculators Grid */}
+      <section id="finance-calculators" className="py-20 bg-muted/30 border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Popular Calculators</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Finance Calculators</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Everything you need to calculate returns, plan loans, and manage your financial future.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {calculators.map((calc, i) => (
               <Link key={i} href={calc.href} className="group flex h-full">
-                <Card className="flex-1 transition-all duration-300 hover:shadow-md hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
                   <CardHeader>
                     <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
                       {calc.icon}
@@ -89,8 +101,111 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Health Calculators Grid */}
+      <section id="health-calculators" className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Health Calculators</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Track your body metrics, plan your diet, and hit your fitness goals with precision.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/health/bmi" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <PieChart className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">BMI Calculator</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Calculate your Body Mass Index (BMI) to understand if you're at a healthy weight.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/health/bmr" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <Target className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">BMR Calculator</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Calculate your Basal Metabolic Rate to understand how many calories you burn at rest.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/health/calories" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <Zap className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Calorie Target</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Determine exactly how many calories you need daily to reach your body goals.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/health/body-fat" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <Target className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Body Fat %</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Calculate your body fat percentage using the standard U.S. Navy Method.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/health/ideal-weight" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <PieChart className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Ideal Weight</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Find your clinically healthy ideal weight range based on your height and gender.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/health/water-intake" className="group flex h-full">
+              <Card className="flex-1 transition-all duration-300 hover:border-emerald-500/50 dark:hover:border-emerald-500/30 cursor-pointer">
+                <CardHeader>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/40 transition-colors">
+                    <Zap className="h-6 w-6 text-emerald-500" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Water Intake</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    Calculate your optimal daily hydration target based on weight and activity.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section className="py-24">
+      <section className="py-24 border-t border-border/50">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="flex flex-col items-center">
@@ -105,14 +220,14 @@ export default function Home() {
                 <ShieldCheck className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Accurate & Reliable</h3>
-              <p className="text-muted-foreground">Using standard financial formulas for precision you can trust for your planning.</p>
+              <p className="text-muted-foreground">Using standard formulas for precision you can trust for your planning.</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400">
                 <PieChart className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Visual Insights</h3>
-              <p className="text-muted-foreground">Beautiful interactive charts that help you understand your money better.</p>
+              <p className="text-muted-foreground">Beautiful interactive interfaces that help you understand your metrics better.</p>
             </div>
           </div>
         </div>

@@ -24,8 +24,8 @@ function Slider({
     <SliderPrimitive.Root
       className={cn("data-horizontal:w-full data-vertical:h-full", className)}
       data-slot="slider"
-      defaultValue={defaultValue}
-      value={value}
+      defaultValue={defaultValue !== undefined ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : undefined}
+      value={value !== undefined ? _values : undefined}
       min={min}
       max={max}
       thumbAlignment="edge"

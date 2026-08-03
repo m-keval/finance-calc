@@ -31,7 +31,7 @@ export function FDCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Input Section */}
-        <Card className="lg:col-span-5 p-6 shadow-sm border-emerald-100 dark:border-emerald-950">
+        <Card className="lg:col-span-5 p-6 border-emerald-100 dark:border-emerald-950">
           <div className="space-y-8">
             <NumberInput
               id="principal"

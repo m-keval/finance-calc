@@ -42,7 +42,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className={`min-h-full flex flex-col font-sans antialiased`}>
+      <body suppressHydrationWarning className={`min-h-full flex flex-col font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

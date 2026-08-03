@@ -30,10 +30,8 @@ export function Navbar() {
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <Link href="/calculators/sip" className="transition-colors hover:text-emerald-600 text-foreground/80">SIP</Link>
-          <Link href="/calculators/fd" className="transition-colors hover:text-emerald-600 text-foreground/80">FD</Link>
-          <Link href="/calculators/loan-emi" className="transition-colors hover:text-emerald-600 text-foreground/80">Loan EMI</Link>
-          <Link href="/calculators/inflation" className="transition-colors hover:text-emerald-600 text-foreground/80">Inflation</Link>
+          <Link href="/calculators/sip" className="transition-colors hover:text-emerald-600 text-foreground/80">Finance</Link>
+          <Link href="/health/bmi" className="transition-colors hover:text-emerald-600 text-foreground/80">Health</Link>
           
           {mounted && (
             <Button
@@ -71,10 +69,18 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-b bg-background px-4 py-4 space-y-3">
-          <Link href="/calculators/sip" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>SIP Calculator</Link>
-          <Link href="/calculators/fd" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>FD Calculator</Link>
-          <Link href="/calculators/loan-emi" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Loan EMI Calculator</Link>
-          <Link href="/calculators/inflation" className="block text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Inflation Calculator</Link>
+          <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Finance</div>
+          <Link href="/calculators/sip" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>SIP Calculator</Link>
+          <Link href="/calculators/fd" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>FD Calculator</Link>
+          <Link href="/calculators/loan-emi" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Loan EMI Calculator</Link>
+          
+          <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 mt-4">Health</div>
+          <Link href="/health/bmi" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>BMI Calculator</Link>
+          <Link href="/health/bmr" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>BMR Calculator</Link>
+          <Link href="/health/calories" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Calorie Calculator</Link>
+          <Link href="/health/body-fat" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Body Fat %</Link>
+          <Link href="/health/ideal-weight" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Ideal Weight</Link>
+          <Link href="/health/water-intake" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Water Intake</Link>
         </div>
       )}
     </nav>

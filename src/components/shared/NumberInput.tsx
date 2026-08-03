@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
 
 interface NumberInputProps {
   id: string;
@@ -93,18 +94,15 @@ export function NumberInput({
   };
 
   // Slider updates both the parent and the display text immediately
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value);
-    if (!isNaN(val)) {
+  const handleSliderChange = (newValues: number | readonly number[]) => {
+    const val = Array.isArray(newValues) ? newValues[0] : newValues;
+    if (val !== undefined && !isNaN(val)) {
       onChange(val);
       if (!isFocusedRef.current) {
         setDisplayText(val.toLocaleString("en-IN"));
       }
     }
   };
-
-  // Filled portion of the slider track
-  const fillPercent = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
 
   return (
     <div className="space-y-3">
@@ -144,18 +142,13 @@ export function NumberInput({
       </div>
 
       {showSlider && (
-        <div className="pt-1 pb-2">
-          <input
-            type="range"
+        <div className="pt-3 pb-2 px-3">
+          <Slider
             min={min}
             max={max}
             step={step}
             value={value}
-            onChange={handleSliderChange}
-            style={{
-              background: `linear-gradient(to right, #10b981 0%, #10b981 ${fillPercent}%, #d1fae5 ${fillPercent}%, #d1fae5 100%)`,
-            }}
-            className="w-full h-2 rounded-lg cursor-pointer appearance-none dark:shadow-none"
+            onValueChange={handleSliderChange}
             aria-label={label}
           />
         </div>

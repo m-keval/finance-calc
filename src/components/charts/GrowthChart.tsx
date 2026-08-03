@@ -42,7 +42,7 @@ export function GrowthChart({
   const isDark = resolvedTheme === "dark"
 
   return (
-    <Card className="shadow-sm">
+    <Card>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}

@@ -5,39 +5,23 @@ import { NumberInput } from "@/components/shared/NumberInput"
 import { ResultCard } from "@/components/shared/ResultCard"
 import { GrowthChart } from "@/components/charts/GrowthChart"
 import { DistributionChart } from "@/components/charts/DistributionChart"
-import { calculateSIP, generateSIPChartData, calculateLumpsum, generateLumpsumChartData, formatCurrency } from "@/lib/math"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { calculateStepUpSIP, generateStepUpSIPChartData, formatCurrency } from "@/lib/math"
+import { Card } from "@/components/ui/card"
 import { Info } from "lucide-react"
 
-export function SIPCalculator() {
-  const [investmentType, setInvestmentType] = useState<"monthly" | "lumpsum">("monthly")
-  const [investment, setInvestment] = useState(10000)
+export function StepUpSIPCalculator() {
+  const [initialInvestment, setInitialInvestment] = useState(10000)
   const [expectedReturn, setExpectedReturn] = useState(12)
   const [years, setYears] = useState(10)
-
-  // When switching types, adjust default amount if it's too small for lumpsum or too big for monthly
-  const handleTypeChange = (value: string) => {
-    const type = value as "monthly" | "lumpsum";
-    setInvestmentType(type);
-    if (type === "lumpsum" && investment < 50000) {
-      setInvestment(100000);
-    } else if (type === "monthly" && investment > 100000) {
-      setInvestment(10000);
-    }
-  };
+  const [stepUpPercentage, setStepUpPercentage] = useState(10)
 
   const results = useMemo(() => {
-    return investmentType === "monthly"
-      ? calculateSIP(investment, expectedReturn, years)
-      : calculateLumpsum(investment, expectedReturn, years)
-  }, [investmentType, investment, expectedReturn, years])
+    return calculateStepUpSIP(initialInvestment, expectedReturn, years, stepUpPercentage)
+  }, [initialInvestment, expectedReturn, years, stepUpPercentage])
 
   const chartData = useMemo(() => {
-    return investmentType === "monthly"
-      ? generateSIPChartData(investment, expectedReturn, years)
-      : generateLumpsumChartData(investment, expectedReturn, years)
-  }, [investmentType, investment, expectedReturn, years])
+    return generateStepUpSIPChartData(initialInvestment, expectedReturn, years, stepUpPercentage)
+  }, [initialInvestment, expectedReturn, years, stepUpPercentage])
 
   const pieData = [
     { name: "Invested Amount", value: results.totalInvestment, color: "#3b82f6" },
@@ -51,22 +35,27 @@ export function SIPCalculator() {
         {/* Input Section */}
         <Card className="lg:col-span-5 p-6 border-emerald-100 dark:border-emerald-950">
           <div className="space-y-8">
-            <Tabs value={investmentType} onValueChange={handleTypeChange} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="monthly">Monthly SIP</TabsTrigger>
-                <TabsTrigger value="lumpsum">One-time (Lumpsum)</TabsTrigger>
-              </TabsList>
-            </Tabs>
             
             <NumberInput
-              id="investment"
-              label={investmentType === "monthly" ? "Monthly Investment" : "Total Investment"}
-              value={investment}
-              onChange={setInvestment}
-              min={investmentType === "monthly" ? 500 : 5000}
-              max={investmentType === "monthly" ? 1000000 : 10000000}
-              step={investmentType === "monthly" ? 500 : 5000}
+              id="initialInvestment"
+              label="Starting Monthly SIP"
+              value={initialInvestment}
+              onChange={setInitialInvestment}
+              min={500}
+              max={1000000}
+              step={500}
               prefix="₹"
+            />
+            
+            <NumberInput
+              id="stepUpPercentage"
+              label="Annual Step-Up"
+              value={stepUpPercentage}
+              onChange={setStepUpPercentage}
+              min={1}
+              max={50}
+              step={1}
+              suffix="%"
             />
             
             <NumberInput
@@ -127,7 +116,7 @@ export function SIPCalculator() {
       <div className="mt-8">
         <GrowthChart
           title="Wealth Growth Projection"
-          description={`Projected growth of ₹${investment.toLocaleString('en-IN')} invested ${investmentType === "monthly" ? "monthly " : ""}for ${years} years at ${expectedReturn}% p.a.`}
+          description={`Projected growth of SIP starting at ₹${initialInvestment.toLocaleString('en-IN')}/mo with a ${stepUpPercentage}% annual step-up for ${years} years at ${expectedReturn}% p.a.`}
           data={chartData}
           xAxisKey="year"
           areas={[

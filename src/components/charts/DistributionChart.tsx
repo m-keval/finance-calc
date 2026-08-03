@@ -25,7 +25,7 @@ export function DistributionChart({
   const isDark = resolvedTheme === "dark"
 
   return (
-    <Card className="shadow-sm h-full flex flex-col">
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
