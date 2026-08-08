@@ -35,11 +35,11 @@ export default function HealthLayout({
                   href={calc.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive 
-                      ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-400" 
-                      : "text-muted-foreground hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-400"
+                      ? "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-400" 
+                      : "text-muted-foreground hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400"
                   }`}
                 >
-                  <div className={isActive ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground"}>
+                  <div className={isActive ? "text-indigo-600 dark:text-indigo-400" : "text-muted-foreground"}>
                     {calc.icon}
                   </div>
                   {calc.name}

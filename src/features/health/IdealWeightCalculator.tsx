@@ -9,13 +9,27 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Info } from "lucide-react"
 
 export function IdealWeightCalculator() {
+  const [unitSystem, setUnitSystem] = useState<"metric" | "imperial">("metric")
   const [gender, setGender] = useState<"male" | "female">("male")
   const [age, setAge] = useState(30)
   const [height, setHeight] = useState(170)
 
-  const idealWeight = useMemo(() => {
-    return calculateIdealWeight(gender, height)
-  }, [gender, height])
+  const handleUnitToggle = (newUnit: "metric" | "imperial") => {
+    if (newUnit === unitSystem) return;
+    if (newUnit === 'imperial') {
+      setHeight(Math.round(height / 2.54));
+    } else {
+      setHeight(Math.round(height * 2.54));
+    }
+    setUnitSystem(newUnit);
+  }
+
+  const idealWeightMetric = useMemo(() => {
+    const calcHeight = unitSystem === 'metric' ? height : height * 2.54;
+    return calculateIdealWeight(gender, calcHeight)
+  }, [gender, height, unitSystem])
+
+  const idealWeight = unitSystem === 'metric' ? idealWeightMetric : idealWeightMetric * 2.20462;
 
   // Calculate a healthy range around the ideal weight (+/- 10%)
   const rangeLow = idealWeight * 0.9;
@@ -30,6 +44,16 @@ export function IdealWeightCalculator() {
           <Card className="border-none bg-card/50 backdrop-blur-sm">
             <CardContent className="p-6 space-y-8">
               
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">UNIT SYSTEM</label>
+                <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="metric">Metric (cm, kg)</TabsTrigger>
+                    <TabsTrigger value="imperial">Imperial (in, lbs)</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+
               <div className="space-y-3">
                 <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
                   Gender
@@ -54,14 +78,14 @@ export function IdealWeightCalculator() {
               />
 
               <NumberInput
-                label="HEIGHT (CM)"
+                label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`}
                 value={height}
                 onChange={setHeight}
-                min={50}
-                max={300}
+                min={unitSystem === 'metric' ? 50 : 20}
+                max={unitSystem === 'metric' ? 300 : 120}
                 step={1}
                 prefix=""
-                suffix=" cm"
+                suffix={unitSystem === 'metric' ? " cm" : " in"}
               />
 
             </CardContent>
@@ -74,24 +98,24 @@ export function IdealWeightCalculator() {
             <ResultCard
               title="IDEAL WEIGHT"
               value={`${idealWeight.toFixed(1)}`}
-              subValue="Kilograms (kg)"
+              subValue={unitSystem === 'metric' ? "Kilograms (kg)" : "Pounds (lbs)"}
               highlight
             />
             <ResultCard
               title="HEALTHY RANGE"
               value={`${rangeLow.toFixed(1)} - ${rangeHigh.toFixed(1)}`}
-              subValue="Kilograms (kg)"
+              subValue={unitSystem === 'metric' ? "Kilograms (kg)" : "Pounds (lbs)"}
             />
           </div>
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
             <div className="space-y-2">
               <p>
                 Calculated using the <strong>Devine Formula</strong>, which is the most widely used formula for estimating ideal body weight.
               </p>
               <p>
-                Keep in mind that "ideal" weight is a general medical guideline. Factors like muscle mass, bone density, and body composition are not accounted for in this simple height-based calculation.
+                Keep in mind that &quot;ideal&quot; weight is a general medical guideline. Factors like muscle mass, bone density, and body composition are not accounted for in this simple height-based calculation.
               </p>
             </div>
           </div>

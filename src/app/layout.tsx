@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AdBanner } from "@/components/shared/AdBanner";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const outfitFont = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "FinCalc | Modern Finance Calculators",
-    template: "%s | FinCalc",
+    default: "FinanceHub | Financial Decisions & Calculators",
+    template: "%s | FinanceHub",
   },
-  description: "A comprehensive suite of modern, fast, and accurate financial calculators including SIP, FD, Loan EMI, and Inflation.",
+  description: "A premium suite of modern, fast, and accurate financial decision tools including SIP vs FD, Lumpsum vs SIP, and Prepayment planning.",
   openGraph: {
-    title: "FinCalc | Modern Finance Calculators",
-    description: "A comprehensive suite of modern, fast, and accurate financial calculators.",
-    url: "https://fincalc.example.com",
-    siteName: "FinCalc",
+    title: "FinanceHub | Financial Decisions",
+    description: "A premium suite of modern, fast, and accurate financial decision tools.",
+    url: "https://financehub.example.com",
+    siteName: "FinanceHub",
     locale: "en_US",
     type: "website",
   },
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${outfitFont.variable}`}>
       <head>
         <script
           async

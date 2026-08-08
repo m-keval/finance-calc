@@ -12,6 +12,7 @@ type ActivityLevel = keyof typeof ACTIVITY_MULTIPLIERS;
 type Goal = keyof typeof GOAL_ADJUSTMENTS;
 
 export function CalorieCalculator() {
+  const [unitSystem, setUnitSystem] = useState<"metric" | "imperial">("metric")
   const [gender, setGender] = useState<"male" | "female">("male")
   const [age, setAge] = useState(30)
   const [height, setHeight] = useState(170)
@@ -19,11 +20,25 @@ export function CalorieCalculator() {
   const [activity, setActivity] = useState<ActivityLevel>("moderate")
   const [goal, setGoal] = useState<Goal>("maintain")
 
+  const handleUnitToggle = (newUnit: "metric" | "imperial") => {
+    if (newUnit === unitSystem) return;
+    if (newUnit === 'imperial') {
+      setHeight(Math.round(height / 2.54));
+      setWeight(Math.round(weight * 2.20462));
+    } else {
+      setHeight(Math.round(height * 2.54));
+      setWeight(Math.round(weight / 2.20462));
+    }
+    setUnitSystem(newUnit);
+  }
+
   const results = useMemo(() => {
-    const bmr = calculateBMR(weight, height, age, gender)
+    const calcWeight = unitSystem === 'metric' ? weight : weight / 2.20462;
+    const calcHeight = unitSystem === 'metric' ? height : height * 2.54;
+    const bmr = calculateBMR(calcWeight, calcHeight, age, gender)
     const calories = calculateDailyCalories(bmr, activity, goal)
     return { bmr, calories }
-  }, [weight, height, age, gender, activity, goal])
+  }, [weight, height, age, gender, activity, goal, unitSystem])
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -34,6 +49,16 @@ export function CalorieCalculator() {
           <Card className="border-none bg-card/50 backdrop-blur-sm">
             <CardContent className="p-6 space-y-8">
               
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">UNIT SYSTEM</label>
+                <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="metric">Metric (cm, kg)</TabsTrigger>
+                    <TabsTrigger value="imperial">Imperial (in, lbs)</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+
               <div className="space-y-3">
                 <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
                   Gender
@@ -58,25 +83,25 @@ export function CalorieCalculator() {
               />
 
               <NumberInput
-                label="HEIGHT (CM)"
+                label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`}
                 value={height}
                 onChange={setHeight}
-                min={50}
-                max={300}
+                min={unitSystem === 'metric' ? 50 : 20}
+                max={unitSystem === 'metric' ? 300 : 120}
                 step={1}
                 prefix=""
-                suffix=" cm"
+                suffix={unitSystem === 'metric' ? " cm" : " in"}
               />
               
               <NumberInput
-                label="WEIGHT (KG)"
+                label={`WEIGHT (${unitSystem === 'metric' ? 'KG' : 'LBS'})`}
                 value={weight}
                 onChange={setWeight}
-                min={20}
-                max={300}
+                min={unitSystem === 'metric' ? 20 : 45}
+                max={unitSystem === 'metric' ? 300 : 660}
                 step={1}
                 prefix=""
-                suffix=" kg"
+                suffix={unitSystem === 'metric' ? " kg" : " lbs"}
               />
 
               <div className="space-y-3 mb-6">
@@ -90,7 +115,7 @@ export function CalorieCalculator() {
                       onClick={() => setActivity(level)}
                       className={`text-left p-3 rounded-lg border text-sm transition-all ${
                         activity === level
-                          ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300 ring-1 ring-emerald-500"
+                          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-800 dark:text-indigo-300 ring-1 ring-indigo-500"
                           : "border-border/50 hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -111,7 +136,7 @@ export function CalorieCalculator() {
                       onClick={() => setGoal(g)}
                       className={`text-center p-3 rounded-lg border text-sm transition-all ${
                         goal === g
-                          ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300 ring-1 ring-emerald-500"
+                          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-800 dark:text-indigo-300 ring-1 ring-indigo-500"
                           : "border-border/50 hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -164,7 +189,7 @@ export function CalorieCalculator() {
           </Card>
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
             <p>
               This is an estimate based on the Mifflin-St Jeor equation. Adjust your intake based on your real-world progress. Never consume less than 1,200 calories without medical supervision.
             </p>

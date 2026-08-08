@@ -124,7 +124,7 @@ export function NumberInput({
             type="text"
             inputMode="numeric"
             autoComplete="off"
-            className={`w-36 text-right font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/20 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900 focus:border-emerald-500 focus:ring-emerald-500 transition-colors ${
+            className={`w-36 text-right font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/20 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900 focus:border-indigo-500 focus:ring-indigo-500 transition-colors ${
               prefix ? "pl-8" : ""
             } ${suffix ? "pr-10" : ""}`}
             value={displayText}
