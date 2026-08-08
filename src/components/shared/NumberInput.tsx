@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 
 interface NumberInputProps {
-  id: string;
+  id?: string;
   label: string;
   value: number;
   onChange: (value: number) => void;
@@ -17,7 +17,7 @@ interface NumberInputProps {
 }
 
 export function NumberInput({
-  id,
+  id: propId,
   label,
   value,
   onChange,
@@ -28,6 +28,9 @@ export function NumberInput({
   suffix,
   showSlider = true,
 }: NumberInputProps) {
+  const generatedId = useId();
+  const id = propId || generatedId;
+
   const isFocusedRef = useRef(false);
 
   // While editing: raw text (no commas). While not editing: formatted with commas.
