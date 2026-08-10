@@ -13,6 +13,7 @@ interface NumberInputProps {
   step?: number;
   prefix?: string;
   suffix?: string;
+  description?: string;
   showSlider?: boolean;
 }
 
@@ -26,6 +27,7 @@ export function NumberInput({
   step = 1,
   prefix,
   suffix,
+  description,
   showSlider = true,
 }: NumberInputProps) {
   const generatedId = useId();
@@ -110,8 +112,11 @@ export function NumberInput({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <Label htmlFor={id} className="text-foreground font-medium">
+        <Label htmlFor={id} className="text-foreground font-medium flex flex-col gap-0.5">
           {label}
+          {description && (
+            <span className="text-xs font-normal text-muted-foreground">{description}</span>
+          )}
         </Label>
         <div className="relative">
           {prefix && (
