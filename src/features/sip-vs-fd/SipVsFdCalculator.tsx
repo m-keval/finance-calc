@@ -109,7 +109,7 @@ export function SipVsFdCalculator() {
           <Card className={`border-none ${winner === 'SIP' ? 'bg-indigo-500/10' : 'bg-blue-500/10'}`}>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-1">Clear Winner</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-1">Clear Winner</p>
                 <h3 className={`text-3xl font-bold ${winner === 'SIP' ? 'text-indigo-600 dark:text-indigo-400' : 'text-blue-600 dark:text-blue-400'}`}>
                   {winner === 'SIP' ? 'Mutual Fund SIP' : 'Bank FD'}
                 </h3>

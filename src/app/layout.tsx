@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: "FinanceHub | Financial Decisions & Calculators",
     template: "%s | FinanceHub",
   },
-  description: "A premium suite of modern, fast, and accurate financial decision tools including SIP vs FD, Lumpsum vs SIP, and Prepayment planning.",
+  description: "A premium suite of modern, fast, and accurate financial decision tools including SIP vs FD and Prepayment planning.",
   openGraph: {
     title: "FinanceHub | Financial Decisions",
     description: "A premium suite of modern, fast, and accurate financial decision tools.",
@@ -54,9 +54,6 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
-            <div className="container mx-auto px-4 max-w-6xl">
-              <AdBanner dataAdSlot="1234567890" />
-            </div>
             <Footer />
           </div>
         </ThemeProvider>

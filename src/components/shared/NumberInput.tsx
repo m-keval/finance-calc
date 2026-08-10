@@ -110,10 +110,7 @@ export function NumberInput({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <Label
-          htmlFor={id}
-          className="text-sm font-semibold tracking-wide text-muted-foreground uppercase"
-        >
+        <Label htmlFor={id} className="text-foreground font-medium">
           {label}
         </Label>
         <div className="relative">

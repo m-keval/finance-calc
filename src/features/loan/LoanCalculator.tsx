@@ -4,17 +4,24 @@ import { useState, useMemo } from "react"
 import { NumberInput } from "@/components/shared/NumberInput"
 import { ResultCard } from "@/components/shared/ResultCard"
 import { DistributionChart } from "@/components/charts/DistributionChart"
-import { calculateLoanEMI, formatCurrency } from "@/lib/math"
+import { calculateLoanEMI, formatCurrency, generateLoanAmortizationSchedule } from "@/lib/math"
 import { Card } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export function LoanCalculator() {
   const [principal, setPrincipal] = useState(3000000)
   const [expectedReturn, setExpectedReturn] = useState(8.5)
   const [years, setYears] = useState(20)
+  const [schedulePeriod, setSchedulePeriod] = useState<"yearly" | "monthly">("yearly")
 
   const results = useMemo(() => {
     return calculateLoanEMI(principal, expectedReturn, years)
   }, [principal, expectedReturn, years])
+
+  const schedule = useMemo(() => {
+    return generateLoanAmortizationSchedule(principal, expectedReturn, years, schedulePeriod)
+  }, [principal, expectedReturn, years, schedulePeriod])
 
   const pieData = [
     { name: "Principal Amount", value: results.principal, color: "#3b82f6" },
@@ -92,6 +99,43 @@ export function LoanCalculator() {
           </div>
         </div>
       </div>
+      
+      {/* Amortization Schedule */}
+      <Card className="p-6 border-indigo-100 dark:border-indigo-950 mt-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <h3 className="text-xl font-bold">Amortization Schedule</h3>
+          <Tabs value={schedulePeriod} onValueChange={(v) => setSchedulePeriod(v as "yearly" | "monthly")} className="w-[200px]">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="yearly">Yearly</TabsTrigger>
+              <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+        <div className="max-h-[500px] w-full overflow-auto rounded-md border scrollbar-thin shadow-sm">
+          <Table>
+            <TableHeader className="sticky top-0 bg-muted/80 backdrop-blur-sm z-10">
+              <TableRow className="bg-muted/50">
+                <TableHead className="font-semibold text-foreground pl-6 py-4">Month/Year</TableHead>
+                <TableHead className="text-right font-semibold text-foreground py-4">Principal Paid</TableHead>
+                <TableHead className="text-right font-semibold text-foreground py-4">Interest Paid</TableHead>
+                <TableHead className="text-right font-semibold text-foreground py-4">Total Payment</TableHead>
+                <TableHead className="text-right font-semibold text-foreground pr-6 py-4">Ending Balance</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {schedule.map((row) => (
+                <TableRow key={row.label} className="even:bg-muted/10 transition-colors hover:bg-muted/30">
+                  <TableCell className="text-muted-foreground pl-6 py-3">{row.label}</TableCell>
+                  <TableCell className="text-right py-3">{formatCurrency(row.principal)}</TableCell>
+                  <TableCell className="text-right py-3">{formatCurrency(row.interest)}</TableCell>
+                  <TableCell className="text-right font-medium py-3">{formatCurrency(row.totalPayment)}</TableCell>
+                  <TableCell className="text-right font-semibold pr-6 py-3">{formatCurrency(row.balance)}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </Card>
     </div>
   )
 }

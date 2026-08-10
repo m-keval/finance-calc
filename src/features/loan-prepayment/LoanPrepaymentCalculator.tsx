@@ -114,7 +114,7 @@ export function LoanPrepaymentCalculator() {
           <Card className="border-none bg-indigo-500/10">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-1">Total Savings</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-1">Total Savings</p>
                 <h3 className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
                   {formatCurrency(saved.interest)}
                 </h3>

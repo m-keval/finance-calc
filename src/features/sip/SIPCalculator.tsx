@@ -75,7 +75,7 @@ export function SIPCalculator() {
               value={expectedReturn}
               onChange={setExpectedReturn}
               min={1}
-              max={13}
+              max={30}
               step={0.5}
               suffix="%"
             />

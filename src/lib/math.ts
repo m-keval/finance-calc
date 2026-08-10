@@ -191,6 +191,59 @@ export function calculateLoanEMI(principal: number, annualRate: number, years: n
   };
 }
 
+export function generateLoanAmortizationSchedule(principal: number, annualRate: number, years: number, period: 'monthly' | 'yearly' = 'yearly') {
+  const r = annualRate / 12 / 100;
+  const n = years * 12;
+  const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  
+  const schedule = [];
+  let remainingBalance = principal;
+  
+  if (period === 'yearly') {
+    for (let year = 1; year <= years; year++) {
+      let yearlyInterest = 0;
+      let yearlyPrincipal = 0;
+      
+      for (let month = 1; month <= 12; month++) {
+        const interestForMonth = remainingBalance * r;
+        const principalForMonth = emi - interestForMonth;
+        
+        yearlyInterest += interestForMonth;
+        yearlyPrincipal += principalForMonth;
+        remainingBalance -= principalForMonth;
+        
+        if (remainingBalance < 0) remainingBalance = 0;
+      }
+      
+      schedule.push({
+        label: year,
+        interest: Math.round(yearlyInterest),
+        principal: Math.round(yearlyPrincipal),
+        balance: Math.round(remainingBalance),
+        totalPayment: Math.round(yearlyInterest + yearlyPrincipal)
+      });
+    }
+  } else {
+    for (let month = 1; month <= n; month++) {
+      const interestForMonth = remainingBalance * r;
+      const principalForMonth = emi - interestForMonth;
+      
+      remainingBalance -= principalForMonth;
+      if (remainingBalance < 0) remainingBalance = 0;
+      
+      schedule.push({
+        label: month,
+        interest: Math.round(interestForMonth),
+        principal: Math.round(principalForMonth),
+        balance: Math.round(remainingBalance),
+        totalPayment: Math.round(emi)
+      });
+    }
+  }
+  
+  return schedule;
+}
+
 // Inflation Math
 export function calculateInflation(currentAmount: number, inflationRate: number, years: number) {
   const r = inflationRate / 100;
@@ -221,4 +274,154 @@ export function generateInflationChartData(currentAmount: number, inflationRate:
   }
   
   return data;
+}
+
+// Rent vs Buy Math
+export interface BuyParams {
+  propertyValue: number;
+  downPayment: number;
+  loanInterestRate: number;
+  loanTenure: number;
+  propertyAppreciationRate: number;
+  maintenanceRate: number;
+}
+
+export interface RentParams {
+  monthlyRent: number;
+  rentEscalationRate: number;
+  investmentReturnRate: number;
+}
+
+export function calculateRentVsBuy(buyParams: BuyParams, rentParams: RentParams, years: number) {
+  const { propertyValue, downPayment, loanInterestRate, loanTenure, propertyAppreciationRate, maintenanceRate } = buyParams;
+  const { monthlyRent, rentEscalationRate, investmentReturnRate } = rentParams;
+
+  const loanAmount = propertyValue - downPayment;
+  const monthlyLoanRate = loanInterestRate / 12 / 100;
+  const totalMonths = loanTenure * 12;
+  
+  // Calculate EMI
+  let emi = 0;
+  if (loanAmount > 0 && monthlyLoanRate > 0) {
+    emi = (loanAmount * monthlyLoanRate * Math.pow(1 + monthlyLoanRate, totalMonths)) / (Math.pow(1 + monthlyLoanRate, totalMonths) - 1);
+  } else if (loanAmount > 0) {
+    emi = loanAmount / totalMonths;
+  }
+
+  const yearlyMaintenance = propertyValue * (maintenanceRate / 100);
+  const monthlyInvestmentReturn = investmentReturnRate / 12 / 100;
+
+  let currentPropertyValue = propertyValue;
+  let currentRent = monthlyRent;
+  let investmentPortfolio = downPayment; // Opportunity cost: invest down payment instead of buying
+  
+  let totalRentPaid = 0;
+  let totalEMIPaid = 0;
+  let totalMaintenancePaid = 0;
+  let remainingLoan = loanAmount;
+
+  const chartData = [];
+
+  for (let year = 1; year <= years; year++) {
+    let yearlyRentPaid = 0;
+    let yearlyEMIPaid = 0;
+    let yearlyMaintenancePaid = yearlyMaintenance; 
+    
+    for (let month = 1; month <= 12; month++) {
+      yearlyRentPaid += currentRent;
+      
+      let interestForMonth = 0;
+      let principalForMonth = 0;
+      let actualEMI = 0;
+      
+      if (remainingLoan > 0) {
+        interestForMonth = remainingLoan * monthlyLoanRate;
+        actualEMI = Math.min(emi, remainingLoan + interestForMonth);
+        principalForMonth = actualEMI - interestForMonth;
+        remainingLoan -= principalForMonth;
+        if (remainingLoan < 0) remainingLoan = 0;
+        yearlyEMIPaid += actualEMI;
+      }
+
+      // monthly cash flow difference (what you would have paid to buy vs what you paid to rent)
+      const buyMonthlyCost = actualEMI + (yearlyMaintenance / 12);
+      const rentMonthlyCost = currentRent;
+      const monthlySavings = buyMonthlyCost - rentMonthlyCost;
+
+      // Compound the investment portfolio and add monthly savings
+      investmentPortfolio = (investmentPortfolio * (1 + monthlyInvestmentReturn)) + monthlySavings;
+    }
+    
+    totalRentPaid += yearlyRentPaid;
+    totalEMIPaid += yearlyEMIPaid;
+    totalMaintenancePaid += yearlyMaintenancePaid;
+    
+    currentPropertyValue = currentPropertyValue * (1 + propertyAppreciationRate / 100);
+    currentRent = currentRent * (1 + rentEscalationRate / 100);
+
+    const netWorthBuy = currentPropertyValue - remainingLoan;
+    const netWorthRent = investmentPortfolio;
+
+    chartData.push({
+      year,
+      propertyValue: Math.round(currentPropertyValue),
+      remainingLoan: Math.round(remainingLoan),
+      netWorthBuy: Math.round(netWorthBuy),
+      netWorthRent: Math.round(netWorthRent),
+      rentPaid: Math.round(totalRentPaid)
+    });
+  }
+
+  const finalNetWorthBuy = chartData[chartData.length - 1].netWorthBuy;
+  const finalNetWorthRent = chartData[chartData.length - 1].netWorthRent;
+  const isBuyingBetter = finalNetWorthBuy > finalNetWorthRent;
+  const difference = Math.abs(finalNetWorthBuy - finalNetWorthRent);
+
+  return {
+    emi: Math.round(emi),
+    totalEMIPaid: Math.round(totalEMIPaid),
+    totalMaintenancePaid: Math.round(totalMaintenancePaid),
+    totalRentPaid: Math.round(totalRentPaid),
+    finalPropertyValue: Math.round(currentPropertyValue),
+    finalInvestmentPortfolio: Math.round(investmentPortfolio),
+    finalNetWorthBuy: Math.round(finalNetWorthBuy),
+    finalNetWorthRent: Math.round(finalNetWorthRent),
+    isBuyingBetter,
+    difference: Math.round(difference),
+    chartData
+  };
+}
+
+// Home Loan Eligibility Math
+export function calculateHomeLoanEligibility(monthlyIncome: number, existingEMIs: number, interestRate: number, tenureYears: number) {
+  // Max EMI a person can afford is generally capped at 50% of net monthly income
+  const foir = 0.50; // Fixed Obligation to Income Ratio
+  const maxTotalEMI = monthlyIncome * foir;
+  
+  // The EMI they can afford for the NEW loan
+  let availableEMI = maxTotalEMI - existingEMIs;
+  if (availableEMI < 0) availableEMI = 0;
+
+  const r = interestRate / 12 / 100;
+  const n = tenureYears * 12;
+
+  // Max Loan Amount = E * ((1+r)^n - 1) / (r * (1+r)^n)
+  let maxEligibleLoan = 0;
+  if (availableEMI > 0 && r > 0) {
+    maxEligibleLoan = availableEMI * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
+  } else if (availableEMI > 0) {
+    maxEligibleLoan = availableEMI * n;
+  }
+
+  // Assuming an 80% LTV (Loan to Value) ratio, calculate max property value
+  const maxPropertyValue = maxEligibleLoan / 0.80;
+  const minimumDownPayment = maxPropertyValue - maxEligibleLoan;
+
+  return {
+    maxEligibleLoan: Math.round(maxEligibleLoan),
+    availableEMI: Math.round(availableEMI),
+    maxTotalAffordableEMI: Math.round(maxTotalEMI),
+    maxPropertyValue: Math.round(maxPropertyValue),
+    minimumDownPayment: Math.round(minimumDownPayment)
+  };
 }

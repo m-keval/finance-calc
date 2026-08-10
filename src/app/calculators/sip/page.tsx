@@ -10,8 +10,8 @@ export default function SIPPage() {
   return (
     <div className="w-full">
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">SIP Calculator</h1>
-        <p className="text-muted-foreground max-w-3xl text-lg">
+        <h1 className="text-3xl font-bold tracking-tight mb-3">SIP Calculator</h1>
+        <p className="text-muted-foreground max-w-3xl">
           Calculate how much your monthly investments can grow over time. Plan your wealth creation journey using the power of compounding.
         </p>
       </div>

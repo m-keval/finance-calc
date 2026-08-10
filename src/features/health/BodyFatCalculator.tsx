@@ -51,7 +51,7 @@ export function BodyFatCalculator() {
             <CardContent className="p-6 space-y-8">
               
               <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">UNIT SYSTEM</label>
+                <label className="text-xs font-bold text-muted-foreground">UNIT SYSTEM</label>
                 <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="metric">Metric (cm)</TabsTrigger>
@@ -61,7 +61,7 @@ export function BodyFatCalculator() {
               </div>
 
               <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <label className="text-xs font-bold text-muted-foreground">
                   Gender
                 </label>
                 <Tabs value={gender} onValueChange={(v) => setGender(v as "male" | "female")} className="w-full">

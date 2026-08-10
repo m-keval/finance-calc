@@ -71,7 +71,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-b bg-background px-4 py-4 space-y-3">
-          <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Decisions & Calculators</div>
+          <div className="text-xs font-bold text-muted-foreground mb-2">Decisions & Calculators</div>
           <Link href="/calculators/sip" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Investment</Link>
           <Link href="/calculators/fd" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Savings</Link>
           <Link href="/calculators/loan-emi" className="block text-sm font-medium pl-2" onClick={() => setIsMobileMenuOpen(false)}>Loans</Link>

@@ -44,7 +44,7 @@ export function WaterIntakeCalculator() {
             <CardContent className="p-6 space-y-8">
               
               <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">UNIT SYSTEM</label>
+                <label className="text-xs font-bold text-muted-foreground">UNIT SYSTEM</label>
                 <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="metric">Metric (kg)</TabsTrigger>
@@ -65,7 +65,7 @@ export function WaterIntakeCalculator() {
               />
 
               <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <label className="text-xs font-bold text-muted-foreground">
                   Climate / Weather
                 </label>
                 <Tabs value={climate} onValueChange={(v) => setClimate(v as "normal" | "hot")} className="w-full">
@@ -77,7 +77,7 @@ export function WaterIntakeCalculator() {
               </div>
 
               <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <label className="text-xs font-bold text-muted-foreground">
                   Activity Level
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

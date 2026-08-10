@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Calculator, PieChart, TrendingUp, PiggyBank, ShieldCheck, Zap, Target, ArrowUpRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { DummyAd } from "@/components/shared/DummyAd";
 
 export default function Home() {
   const calculators = [
@@ -30,7 +31,7 @@ export default function Home() {
       href: "/calculators/fd",
     },
     {
-      title: "Loan EMI",
+      title: "Loan Calculator",
       description: "Calculate your Equated Monthly Installment (EMI) for any loan and see the amortization schedule.",
       icon: <PieChart className="h-6 w-6 text-indigo-500" />,
       href: "/calculators/loan-emi",
@@ -71,6 +72,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Ad Placement 1 */}
+      <div className="w-full py-8 border-b border-border/30 bg-background/50 flex justify-center items-center">
+        <DummyAd type="horizontal" className="mx-auto" />
+      </div>
+
       {/* Finance Calculators Grid */}
       <section id="finance-calculators" className="py-20 bg-muted/30 border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-8">
@@ -101,7 +107,10 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* Ad Placement 2 */}
+      <div className="w-full py-12 flex justify-center items-center">
+        <DummyAd type="horizontal" className="mx-auto" />
+      </div>
 
       {/* Features Section */}
       <section className="py-24 border-t border-border/50">

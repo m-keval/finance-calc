@@ -82,7 +82,7 @@ export function InvestVsRepayCalculator() {
           <Card className="border-none bg-card/50 backdrop-blur-sm">
             <CardContent className="p-6 space-y-8">
               <div className="space-y-2">
-                <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">Loan Details</h3>
+                <h3 className="font-semibold text-sm text-muted-foreground">Loan Details</h3>
                 <NumberInput
                   label="OUTSTANDING LOAN"
                   value={loanAmount}
@@ -113,7 +113,7 @@ export function InvestVsRepayCalculator() {
               </div>
 
               <div className="space-y-2 pt-4 border-t border-border/50">
-                <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">Surplus Details</h3>
+                <h3 className="font-semibold text-sm text-muted-foreground">Surplus Details</h3>
                 <NumberInput
                   label="EXTRA MONTHLY CASH"
                   value={monthlySurplus}
@@ -142,7 +142,7 @@ export function InvestVsRepayCalculator() {
           <Card className={`border-none ${winner === 'Invest' ? 'bg-indigo-500/10' : 'bg-purple-500/10'}`}>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-1">Clear Winner</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-1">Clear Winner</p>
                 <h3 className={`text-3xl font-bold ${winner === 'Invest' ? 'text-indigo-600 dark:text-indigo-400' : 'text-purple-600 dark:text-purple-400'}`}>
                   {winner === 'Invest' ? 'Invest the Surplus' : 'Prepay the Loan'}
                 </h3>
