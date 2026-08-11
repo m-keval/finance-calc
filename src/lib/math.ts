@@ -425,3 +425,144 @@ export function calculateHomeLoanEligibility(monthlyIncome: number, existingEMIs
     minimumDownPayment: Math.round(minimumDownPayment)
   };
 }
+
+// HRA Exemption Math
+export function calculateHRA(basicSalary: number, hraReceived: number, rentPaid: number, isMetro: boolean) {
+  // Rule 1: Actual HRA received
+  const rule1 = hraReceived;
+  
+  // Rule 2: 50% of Basic Salary for Metro, 40% for Non-Metro
+  const rule2 = isMetro ? (basicSalary * 0.5) : (basicSalary * 0.4);
+  
+  // Rule 3: Actual Rent Paid - 10% of Basic Salary
+  const rule3 = Math.max(0, rentPaid - (basicSalary * 0.1));
+  
+  // Exemption is the minimum of the three rules
+  const exemptHRA = Math.min(rule1, rule2, rule3);
+  const taxableHRA = hraReceived - exemptHRA;
+
+  return {
+    rule1: Math.round(rule1),
+    rule2: Math.round(rule2),
+    rule3: Math.round(rule3),
+    exemptHRA: Math.round(exemptHRA),
+    taxableHRA: Math.max(0, Math.round(taxableHRA))
+  };
+}
+
+// Capital Gains Tax Math
+export type AssetType = 'equity' | 'realEstate';
+
+export function calculateCapitalGains(
+  assetType: AssetType, 
+  purchasePrice: number, 
+  salePrice: number, 
+  holdingPeriodMonths: number
+) {
+  const totalGain = salePrice - purchasePrice;
+  let isLongTerm = false;
+  let stcgTaxRate = 0;
+  let ltcgTaxRate = 0;
+  let ltcgExemption = 0;
+
+  if (assetType === 'equity') {
+    isLongTerm = holdingPeriodMonths > 12;
+    stcgTaxRate = 0.20; // 20% STCG on Equity
+    ltcgTaxRate = 0.125; // 12.5% LTCG on Equity
+    ltcgExemption = 125000; // 1.25 Lakh exemption
+  } else {
+    isLongTerm = holdingPeriodMonths > 24;
+    stcgTaxRate = 0.30; // 30% STCG assumed for Real Estate (slab rate)
+    ltcgTaxRate = 0.125; // 12.5% without indexation
+    ltcgExemption = 0;
+  }
+
+  let taxableGain = 0;
+  let taxLiability = 0;
+
+  if (totalGain > 0) {
+    if (isLongTerm) {
+      taxableGain = Math.max(0, totalGain - ltcgExemption);
+      taxLiability = taxableGain * ltcgTaxRate;
+    } else {
+      taxableGain = totalGain;
+      taxLiability = taxableGain * stcgTaxRate;
+    }
+  }
+
+  return {
+    totalGain: Math.round(totalGain),
+    isLongTerm,
+    taxableGain: Math.round(taxableGain),
+    taxLiability: Math.round(taxLiability),
+    netProfit: Math.round(totalGain - taxLiability)
+  };
+}
+
+// Income Tax Math (FY 2024-25 / AY 2025-26)
+export function calculateIncomeTax(
+  grossIncome: number,
+  totalDeductions: number // e.g. 80C, 80D, HRA, LTA etc for old regime
+) {
+  // 1. Standard Deduction
+  const stdDeductionOld = 50000;
+  const stdDeductionNew = 75000; // Budget 2024
+
+  // 2. Taxable Income
+  const taxableOld = Math.max(0, grossIncome - stdDeductionOld - totalDeductions);
+  const taxableNew = Math.max(0, grossIncome - stdDeductionNew); // Deductions generally not allowed in new regime
+
+  // 3. Calculate Tax for Old Regime
+  let taxOld = 0;
+  if (taxableOld > 250000) {
+    if (taxableOld <= 500000) {
+      taxOld = (taxableOld - 250000) * 0.05;
+    } else if (taxableOld <= 1000000) {
+      taxOld = 250000 * 0.05 + (taxableOld - 500000) * 0.20;
+    } else {
+      taxOld = 250000 * 0.05 + 500000 * 0.20 + (taxableOld - 1000000) * 0.30;
+    }
+  }
+
+  // 4. Calculate Tax for New Regime (Budget 2024 slabs)
+  let taxNew = 0;
+  if (taxableNew > 300000) {
+    if (taxableNew <= 700000) {
+      taxNew = (taxableNew - 300000) * 0.05;
+    } else if (taxableNew <= 1000000) {
+      taxNew = 400000 * 0.05 + (taxableNew - 700000) * 0.10;
+    } else if (taxableNew <= 1200000) {
+      taxNew = 400000 * 0.05 + 300000 * 0.10 + (taxableNew - 1000000) * 0.15;
+    } else if (taxableNew <= 1500000) {
+      taxNew = 400000 * 0.05 + 300000 * 0.10 + 200000 * 0.15 + (taxableNew - 1200000) * 0.20;
+    } else {
+      taxNew = 400000 * 0.05 + 300000 * 0.10 + 200000 * 0.15 + 300000 * 0.20 + (taxableNew - 1500000) * 0.30;
+    }
+  }
+
+  // 5. Rebate under section 87A
+  if (taxableOld <= 500000) taxOld = 0; // Max 12500 rebate
+  if (taxableNew <= 700000) taxNew = 0; // Max 25000 rebate
+  // Note: Marginal relief for new regime is ignored for simplicity but exists for income just above 7L
+
+  // 6. Health & Education Cess (4%)
+  const cessOld = taxOld * 0.04;
+  const cessNew = taxNew * 0.04;
+
+  const finalTaxOld = taxOld + cessOld;
+  const finalTaxNew = taxNew + cessNew;
+
+  return {
+    grossIncome,
+    stdDeductionOld,
+    stdDeductionNew,
+    totalDeductions,
+    taxableOld,
+    taxableNew,
+    finalTaxOld: Math.round(finalTaxOld),
+    finalTaxNew: Math.round(finalTaxNew),
+    taxSavedOld: Math.max(0, Math.round(finalTaxNew - finalTaxOld)),
+    taxSavedNew: Math.max(0, Math.round(finalTaxOld - finalTaxNew)),
+    betterRegime: finalTaxOld < finalTaxNew ? 'old' : 'new'
+  };
+}

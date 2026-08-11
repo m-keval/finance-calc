@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { TrendingUp, PiggyBank, PieChart, Calculator, Target, ArrowUpRight, Scale, Wallet, ArrowRightLeft, FastForward, Home, Building } from "lucide-react";
+import { TrendingUp, PiggyBank, PieChart, Calculator, Target, ArrowUpRight, Scale, Wallet, ArrowRightLeft, FastForward, Home, Building, FileText, Landmark, MapPin } from "lucide-react";
 import { ReactNode } from "react";
 import { DummyAd } from "@/components/shared/DummyAd";
 
@@ -24,6 +24,14 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
       title: "Savings",
       items: [
         { name: "FD Calculator", href: "/calculators/fd", icon: <PiggyBank className="w-4 h-4" /> },
+      ]
+    },
+    {
+      title: "Taxation",
+      items: [
+        { name: "Income Tax", href: "/calculators/income-tax", icon: <FileText className="w-4 h-4" /> },
+        { name: "Capital Gains", href: "/calculators/capital-gains", icon: <Landmark className="w-4 h-4" /> },
+        { name: "HRA Exemption", href: "/calculators/hra", icon: <MapPin className="w-4 h-4" /> },
       ]
     },
     {
