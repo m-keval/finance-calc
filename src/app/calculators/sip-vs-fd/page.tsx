@@ -1,7 +1,7 @@
 import { SipVsFdCalculator } from "@/features/sip-vs-fd/SipVsFdCalculator"
 
 export const metadata = {
-  title: "SIP vs FD Calculator | FinanceHub",
+  title: "SIP vs FD Calculator | CalcNiv",
   description: "Compare SIP vs FD returns, inflation impact, and taxes to make a better investment decision.",
 }
 

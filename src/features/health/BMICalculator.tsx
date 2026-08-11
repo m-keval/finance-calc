@@ -115,7 +115,7 @@ export function BMICalculator() {
                   <span>Underweight</span>
                   <span className="font-medium">&lt; 18.5</span>
                 </div>
-                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-indigo-500/10 text-indigo-700 dark:text-indigo-400">
+                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-brand-500/10 text-brand-700 dark:text-brand-400">
                   <span>Normal weight</span>
                   <span className="font-medium">18.5 - 24.9</span>
                 </div>
@@ -132,7 +132,7 @@ export function BMICalculator() {
           </Card>
 
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
             <p>
               BMI is a useful measure of overweight and obesity. It is calculated from your height and weight. BMI is an estimate of body fat and a good gauge of your risk for diseases that can occur with more body fat.
             </p>

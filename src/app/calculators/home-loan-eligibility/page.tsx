@@ -1,7 +1,7 @@
 import { HomeLoanEligibilityCalculator } from "@/features/home-loan-eligibility/HomeLoanEligibilityCalculator"
 
 export const metadata = {
-  title: "Home Loan Eligibility Calculator | FinanceHub",
+  title: "Home Loan Eligibility Calculator | CalcNiv",
   description: "Calculate your maximum home loan eligibility based on your income and existing EMIs.",
 }
 

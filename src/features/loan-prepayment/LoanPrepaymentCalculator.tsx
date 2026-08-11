@@ -111,18 +111,18 @@ export function LoanPrepaymentCalculator() {
         {/* Right Column: Results */}
         <div className="lg:col-span-7 space-y-6">
           
-          <Card className="border-none bg-indigo-500/10">
+          <Card className="border-none bg-brand-500/10">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-muted-foreground mb-1">Total Savings</p>
-                <h3 className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                <h3 className="text-3xl font-bold text-brand-600 dark:text-brand-400">
                   {formatCurrency(saved.interest)}
                 </h3>
                 <p className="text-sm mt-2 text-muted-foreground">
                   You will close your loan <span className="font-bold text-foreground">{Math.floor(saved.months / 12)} years and {saved.months % 12} months</span> earlier!
                 </p>
               </div>
-              <div className="p-4 rounded-full bg-indigo-500/20 text-indigo-600">
+              <div className="p-4 rounded-full bg-brand-500/20 text-brand-600">
                 <FastForward className="w-10 h-10" />
               </div>
             </CardContent>
@@ -149,24 +149,24 @@ export function LoanPrepaymentCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="border-none bg-card/50 backdrop-blur-sm ring-1 ring-indigo-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            <Card className="border-none bg-card/50 backdrop-blur-sm ring-1 ring-brand-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <CheckCircle2 className="w-5 h-5 text-indigo-500" />
+                  <CheckCircle2 className="w-5 h-5 text-brand-500" />
                   <h4 className="font-semibold">With Prepayment</h4>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm text-indigo-600/70 dark:text-indigo-400/70">New Monthly Outflow</p>
-                    <p className="text-xl font-bold text-indigo-600 dark:text-indigo-400">{formatCurrency(revised.payment)}</p>
+                    <p className="text-sm text-brand-600/70 dark:text-brand-400/70">New Monthly Outflow</p>
+                    <p className="text-xl font-bold text-brand-600 dark:text-brand-400">{formatCurrency(revised.payment)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-indigo-600/70 dark:text-indigo-400/70">Total Interest</p>
-                    <p className="text-lg font-medium text-indigo-600 dark:text-indigo-400">{formatCurrency(revised.interest)}</p>
+                    <p className="text-sm text-brand-600/70 dark:text-brand-400/70">Total Interest</p>
+                    <p className="text-lg font-medium text-brand-600 dark:text-brand-400">{formatCurrency(revised.interest)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-indigo-600/70 dark:text-indigo-400/70">Time to debt-free</p>
-                    <p className="text-lg font-medium text-indigo-600 dark:text-indigo-400">
+                    <p className="text-sm text-brand-600/70 dark:text-brand-400/70">Time to debt-free</p>
+                    <p className="text-lg font-medium text-brand-600 dark:text-brand-400">
                       {Math.floor(revised.months / 12)} Years {revised.months % 12} Mos
                     </p>
                   </div>

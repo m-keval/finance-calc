@@ -1,7 +1,7 @@
 import { InvestVsRepayCalculator } from "@/features/invest-vs-repay/InvestVsRepayCalculator"
 
 export const metadata = {
-  title: "Invest vs Repay Loan | FinanceHub",
+  title: "Invest vs Repay Loan | CalcNiv",
   description: "Should you prepay your loan or invest your extra cash? Find out mathematically which makes you wealthier.",
 }
 

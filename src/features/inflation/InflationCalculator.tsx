@@ -25,7 +25,7 @@ export function InflationCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Input Section */}
-        <Card className="lg:col-span-5 p-6 border-indigo-100 dark:border-indigo-950">
+        <Card className="lg:col-span-5 p-6 border-brand-100 dark:border-brand-950">
           <div className="space-y-8">
             <NumberInput
               id="currentAmount"

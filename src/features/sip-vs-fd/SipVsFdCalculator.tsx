@@ -106,18 +106,18 @@ export function SipVsFdCalculator() {
 
         {/* Right Column: Results */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className={`border-none ${winner === 'SIP' ? 'bg-indigo-500/10' : 'bg-blue-500/10'}`}>
+          <Card className={`border-none ${winner === 'SIP' ? 'bg-brand-500/10' : 'bg-blue-500/10'}`}>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-muted-foreground mb-1">Clear Winner</p>
-                <h3 className={`text-3xl font-bold ${winner === 'SIP' ? 'text-indigo-600 dark:text-indigo-400' : 'text-blue-600 dark:text-blue-400'}`}>
+                <h3 className={`text-3xl font-bold ${winner === 'SIP' ? 'text-brand-600 dark:text-brand-400' : 'text-blue-600 dark:text-blue-400'}`}>
                   {winner === 'SIP' ? 'Mutual Fund SIP' : 'Bank FD'}
                 </h3>
                 <p className="text-sm mt-2 text-muted-foreground">
                   Generates <span className="font-bold text-foreground">{formatCurrency(difference)}</span> more wealth than {winner === 'SIP' ? 'FD' : 'SIP'}.
                 </p>
               </div>
-              <div className={`p-4 rounded-full ${winner === 'SIP' ? 'bg-indigo-500/20 text-indigo-600' : 'bg-blue-500/20 text-blue-600'}`}>
+              <div className={`p-4 rounded-full ${winner === 'SIP' ? 'bg-brand-500/20 text-brand-600' : 'bg-blue-500/20 text-blue-600'}`}>
                 {winner === 'SIP' ? <TrendingUp className="w-10 h-10" /> : <PiggyBank className="w-10 h-10" />}
               </div>
             </CardContent>
@@ -127,7 +127,7 @@ export function SipVsFdCalculator() {
             <Card className="border-none bg-card/50 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-5 h-5 text-indigo-500" />
+                  <TrendingUp className="w-5 h-5 text-brand-500" />
                   <h4 className="font-semibold">SIP Performance</h4>
                 </div>
                 <div className="space-y-4">
@@ -137,7 +137,7 @@ export function SipVsFdCalculator() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Inflation Adjusted</p>
-                    <p className="text-lg font-medium text-indigo-600 dark:text-indigo-400">{formatCurrency(sip.realValue)}</p>
+                    <p className="text-lg font-medium text-brand-600 dark:text-brand-400">{formatCurrency(sip.realValue)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -177,7 +177,7 @@ export function SipVsFdCalculator() {
                 </div>
                 <div className="grid grid-cols-3 p-4 text-sm items-center bg-muted/10">
                   <div className="font-medium flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-indigo-500" /> Risk Score
+                    <ShieldCheck className="w-4 h-4 text-brand-500" /> Risk Score
                   </div>
                   <div className="text-center">Moderate to High</div>
                   <div className="text-center">Very Low (Safe)</div>
@@ -199,8 +199,8 @@ export function SipVsFdCalculator() {
           </Card>
 
           {/* AI Advisor Note */}
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-indigo-500/10 text-sm text-indigo-900 dark:text-indigo-300 border border-indigo-500/20">
-            <Info className="w-5 h-5 shrink-0 mt-0.5 text-indigo-600 dark:text-indigo-400" />
+          <div className="flex items-start gap-3 p-4 rounded-xl bg-brand-500/10 text-sm text-brand-900 dark:text-brand-300 border border-brand-500/20">
+            <Info className="w-5 h-5 shrink-0 mt-0.5 text-brand-600 dark:text-brand-400" />
             <p>
               <strong>Advisor Note:</strong> While SIPs offer significantly higher wealth creation over {years} years, they carry market risk. FDs are completely safe but often fail to beat inflation. A balanced portfolio uses FDs for emergency funds (1-2 years of expenses) and SIPs for long-term wealth creation.
             </p>

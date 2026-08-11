@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useTheme } from "next-themes"
 import { Calculator, Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -21,18 +22,22 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-8 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-1.5 rounded-lg text-white shadow-lg shadow-indigo-500/20 group-hover:shadow-indigo-500/40 group-hover:scale-105 transition-all duration-300">
-              <Calculator className="h-5 w-5" />
-            </div>
-            <span className="inline-block font-extrabold text-2xl tracking-tighter bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-              FinanceHub
+            <Image 
+              src="/logo.png" 
+              alt="CalcNiv Logo" 
+              width={32} 
+              height={32} 
+              className="group-hover:scale-105 transition-all duration-300"
+            />
+            <span className="inline-block font-extrabold text-2xl tracking-tighter text-brand-600 dark:text-brand-400">
+              CalcNiv
             </span>
           </Link>
         </div>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <Link href="/calculators/sip" className="transition-colors hover:text-indigo-600 text-foreground/80">Calculators</Link>
+          <Link href="/calculators/sip" className="transition-colors hover:text-brand-600 text-foreground/80">Calculators</Link>
 
           
           {mounted && (

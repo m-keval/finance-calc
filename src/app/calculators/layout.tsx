@@ -63,11 +63,11 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
                       href={calc.href}
                       className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         isActive 
-                          ? "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-400" 
-                          : "text-muted-foreground hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400"
+                          ? "bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-400" 
+                          : "text-muted-foreground hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-950/50 dark:hover:text-brand-400"
                       }`}
                     >
-                      <div className={isActive ? "text-indigo-600 dark:text-indigo-400" : "text-muted-foreground/70"}>
+                      <div className={isActive ? "text-brand-600 dark:text-brand-400" : "text-muted-foreground/70"}>
                         {calc.icon}
                       </div>
                       {calc.name}

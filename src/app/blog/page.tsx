@@ -43,13 +43,13 @@ export default function BlogPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {POSTS.map((post) => (
-          <Card key={post.id} className="flex flex-col hover:border-indigo-500/50 transition-colors cursor-pointer">
+          <Card key={post.id} className="flex flex-col hover:border-brand-500/50 transition-colors cursor-pointer">
             <CardHeader>
               <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
                 <span>{post.date}</span>
                 <span>{post.readTime}</span>
               </div>
-              <CardTitle className="text-xl leading-tight mb-2 hover:text-indigo-600 transition-colors">
+              <CardTitle className="text-xl leading-tight mb-2 hover:text-brand-600 transition-colors">
                 <Link href={`#`}>{post.title}</Link>
               </CardTitle>
               <CardDescription className="text-base line-clamp-3">
@@ -57,7 +57,7 @@ export default function BlogPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="mt-auto pt-4 border-t">
-              <Link href="#" className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline">
+              <Link href="#" className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline">
                 Read Article →
               </Link>
             </CardContent>

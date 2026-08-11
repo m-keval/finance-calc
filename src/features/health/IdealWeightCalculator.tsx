@@ -109,7 +109,7 @@ export function IdealWeightCalculator() {
           </div>
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
             <div className="space-y-2">
               <p>
                 Calculated using the <strong>Devine Formula</strong>, which is the most widely used formula for estimating ideal body weight.

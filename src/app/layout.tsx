@@ -14,15 +14,15 @@ const outfitFont = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "FinanceHub | Financial Decisions & Calculators",
-    template: "%s | FinanceHub",
+    default: "CalcNiv | The foundation for smarter decisions",
+    template: "%s | CalcNiv",
   },
-  description: "A premium suite of modern, fast, and accurate financial decision tools including SIP vs FD and Prepayment planning.",
+  description: "The foundation for smarter decisions through calculation. A premium suite of modern, fast, and accurate tools.",
   openGraph: {
-    title: "FinanceHub | Financial Decisions",
-    description: "A premium suite of modern, fast, and accurate financial decision tools.",
-    url: "https://financehub.example.com",
-    siteName: "FinanceHub",
+    title: "CalcNiv | Smart Decisions",
+    description: "The foundation for smarter decisions through calculation.",
+    url: "https://calcniv.example.com",
+    siteName: "CalcNiv",
     locale: "en_US",
     type: "website",
   },

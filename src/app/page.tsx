@@ -9,37 +9,37 @@ export default function Home() {
     {
       title: "SIP Calculator",
       description: "Calculate how much your monthly investments can grow over time with the power of compounding.",
-      icon: <TrendingUp className="h-6 w-6 text-indigo-500" />,
+      icon: <TrendingUp className="h-6 w-6 text-brand-500" />,
       href: "/calculators/sip",
     },
     {
       title: "Step-up SIP",
       description: "Supercharge your wealth by increasing your SIP amount every year as your income grows.",
-      icon: <ArrowUpRight className="h-6 w-6 text-indigo-500" />,
+      icon: <ArrowUpRight className="h-6 w-6 text-brand-500" />,
       href: "/calculators/step-up-sip",
     },
     {
       title: "Goal Planning",
       description: "Work backwards from your target amount to find out exactly how much you need to invest today.",
-      icon: <Target className="h-6 w-6 text-indigo-500" />,
+      icon: <Target className="h-6 w-6 text-brand-500" />,
       href: "/calculators/goal",
     },
     {
       title: "FD Calculator",
       description: "Calculate the maturity amount and interest earned on your Fixed Deposit.",
-      icon: <PiggyBank className="h-6 w-6 text-indigo-500" />,
+      icon: <PiggyBank className="h-6 w-6 text-brand-500" />,
       href: "/calculators/fd",
     },
     {
       title: "Loan Calculator",
       description: "Calculate your Equated Monthly Installment (EMI) for any loan and see the amortization schedule.",
-      icon: <PieChart className="h-6 w-6 text-indigo-500" />,
+      icon: <PieChart className="h-6 w-6 text-brand-500" />,
       href: "/calculators/loan-emi",
     },
     {
       title: "Inflation Calculator",
       description: "Understand how inflation erodes purchasing power and calculate the future cost of current expenses.",
-      icon: <Calculator className="h-6 w-6 text-indigo-500" />,
+      icon: <Calculator className="h-6 w-6 text-brand-500" />,
       href: "/calculators/inflation",
     },
   ];
@@ -49,25 +49,23 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-32">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-indigo-500 opacity-20 blur-[100px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-brand-500 opacity-20 blur-[100px]"></div>
         
         <div className="container relative mx-auto px-4 sm:px-8 flex flex-col items-center text-center">
-          <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300 mb-6">
+          <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-brand-100 text-brand-800 dark:bg-brand-900/30 dark:text-brand-300 mb-6">
             New & Improved Calculators
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight max-w-4xl mb-6">
-            Smart Financial Calculators for the <span className="text-indigo-600 dark:text-indigo-400">Modern Investor</span>
+            Smart Financial Calculators for the <span className="text-brand-600 dark:text-brand-400">Modern Investor</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mb-10">
             Make better financial decisions with our fast, accurate, and beautifully designed calculators. Planning your wealth has never been easier.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="#calculators" className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base font-medium" })}>
+            <Link href="#finance-calculators" className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base font-medium" })}>
               Explore Calculators <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link href="/blog" className={buttonVariants({ size: "lg", variant: "outline", className: "h-12 px-8 text-base font-medium" })}>
-              Read our Guides
-            </Link>
+
           </div>
         </div>
       </section>
@@ -88,12 +86,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {calculators.map((calc, i) => (
               <Link key={i} href={calc.href} className="group flex h-full">
-                <Card className="flex-1 transition-all duration-300 hover:border-indigo-500/50 dark:hover:border-indigo-500/30 cursor-pointer">
+                <Card className="flex-1 transition-all duration-300 hover:border-brand-500/50 dark:hover:border-brand-500/30 cursor-pointer">
                   <CardHeader>
-                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/20 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-900/40 transition-colors">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-100 dark:bg-brand-900/20 group-hover:bg-brand-200 dark:group-hover:bg-brand-900/40 transition-colors">
                       {calc.icon}
                     </div>
-                    <CardTitle className="text-xl group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{calc.title}</CardTitle>
+                    <CardTitle className="text-xl group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{calc.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base leading-relaxed">
@@ -117,21 +115,21 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="flex flex-col items-center">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400">
                 <Zap className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Lightning Fast</h3>
               <p className="text-muted-foreground">Calculations happen instantly on your device without waiting for page loads.</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400">
                 <ShieldCheck className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Accurate & Reliable</h3>
               <p className="text-muted-foreground">Using standard formulas for precision you can trust for your planning.</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400">
                 <PieChart className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Visual Insights</h3>

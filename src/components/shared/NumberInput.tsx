@@ -112,10 +112,10 @@ export function NumberInput({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <Label htmlFor={id} className="text-foreground font-medium flex flex-col gap-0.5">
+        <Label htmlFor={id} className="text-left text-foreground font-medium flex flex-col items-start gap-0.5">
           {label}
           {description && (
-            <span className="text-xs font-normal text-muted-foreground">{description}</span>
+            <span className="text-xs font-normal text-muted-foreground text-left">{description}</span>
           )}
         </Label>
         <div className="relative">
@@ -129,7 +129,7 @@ export function NumberInput({
             type="text"
             inputMode="numeric"
             autoComplete="off"
-            className={`w-36 text-right font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/20 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900 focus:border-indigo-500 focus:ring-indigo-500 transition-colors ${
+            className={`w-36 text-right font-bold text-brand-600 bg-brand-50 dark:bg-brand-950/20 dark:text-brand-400 border-brand-200 dark:border-brand-900 focus:border-brand-500 focus:ring-brand-500 transition-colors ${
               prefix ? "pl-8" : ""
             } ${suffix ? "pr-10" : ""}`}
             value={displayText}

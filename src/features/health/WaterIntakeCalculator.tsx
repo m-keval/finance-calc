@@ -87,7 +87,7 @@ export function WaterIntakeCalculator() {
                       onClick={() => setActivity(level)}
                       className={`text-left p-3 rounded-lg border text-sm transition-all ${
                         activity === level
-                          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-800 dark:text-indigo-300 ring-1 ring-indigo-500"
+                          ? "border-brand-500 bg-brand-50 dark:bg-brand-900/20 text-brand-800 dark:text-brand-300 ring-1 ring-brand-500"
                           : "border-border/50 hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -121,14 +121,14 @@ export function WaterIntakeCalculator() {
             </Card>
             <Card className="border-none bg-card/50 backdrop-blur-sm">
               <CardContent className="p-6 flex flex-col items-center text-center justify-center space-y-2 h-full">
-                <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{waterOunces.toFixed(1)}</div>
+                <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">{waterOunces.toFixed(1)}</div>
                 <div className="text-sm text-muted-foreground">Fluid Ounces (oz)</div>
               </CardContent>
             </Card>
           </div>
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
             <p>
               Your water intake is dynamically calculated based on your body weight, increased by your physical activity level, and further adjusted if you are in a hot climate where you sweat more.
             </p>

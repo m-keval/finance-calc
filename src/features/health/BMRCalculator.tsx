@@ -111,7 +111,7 @@ export function BMRCalculator() {
           />
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
             <p>
               Your Basal Metabolic Rate (BMR) represents the number of calories your body burns at rest just to maintain basic life functions (breathing, circulating blood, cell production). To calculate your total daily caloric needs, you must multiply this number by your activity level.
             </p>

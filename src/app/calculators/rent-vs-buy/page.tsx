@@ -1,7 +1,7 @@
 import { RentVsBuyCalculator } from "@/features/rent-vs-buy/RentVsBuyCalculator"
 
 export const metadata = {
-  title: "Rent vs Buy Calculator | FinanceHub",
+  title: "Rent vs Buy Calculator | CalcNiv",
   description: "Compare the financial benefits of renting versus buying a house to make the right real estate decision.",
 }
 

@@ -115,7 +115,7 @@ export function CalorieCalculator() {
                       onClick={() => setActivity(level)}
                       className={`text-left p-3 rounded-lg border text-sm transition-all ${
                         activity === level
-                          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-800 dark:text-indigo-300 ring-1 ring-indigo-500"
+                          ? "border-brand-500 bg-brand-50 dark:bg-brand-900/20 text-brand-800 dark:text-brand-300 ring-1 ring-brand-500"
                           : "border-border/50 hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -136,7 +136,7 @@ export function CalorieCalculator() {
                       onClick={() => setGoal(g)}
                       className={`text-center p-3 rounded-lg border text-sm transition-all ${
                         goal === g
-                          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-800 dark:text-indigo-300 ring-1 ring-indigo-500"
+                          ? "border-brand-500 bg-brand-50 dark:bg-brand-900/20 text-brand-800 dark:text-brand-300 ring-1 ring-brand-500"
                           : "border-border/50 hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -189,7 +189,7 @@ export function CalorieCalculator() {
           </Card>
           
           <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
             <p>
               This is an estimate based on the Mifflin-St Jeor equation. Adjust your intake based on your real-world progress. Never consume less than 1,200 calories without medical supervision.
             </p>

@@ -23,8 +23,8 @@ export function HomeLoanEligibilityCalculator() {
         
         {/* Input Section */}
         <div className="lg:col-span-5">
-          <Card className="p-6 border-indigo-100 dark:border-indigo-950">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
+          <Card className="p-6 border-brand-100 dark:border-brand-950">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-brand-600 dark:text-brand-400">
               <Calculator className="w-5 h-5" /> Financial Profile
             </h3>
             <div className="space-y-6">
@@ -76,7 +76,7 @@ export function HomeLoanEligibilityCalculator() {
 
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="p-8 border-2 border-indigo-100 dark:border-indigo-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-indigo-50/50 dark:to-indigo-950/20">
+          <Card className="p-8 border-2 border-brand-100 dark:border-brand-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Building className="w-32 h-32" />
             </div>
@@ -87,7 +87,7 @@ export function HomeLoanEligibilityCalculator() {
             </p>
 
             <div className="mb-8">
-              <div className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
+              <div className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600 dark:from-brand-400 dark:to-purple-400">
                 {formatCurrency(results.maxEligibleLoan)}
               </div>
             </div>

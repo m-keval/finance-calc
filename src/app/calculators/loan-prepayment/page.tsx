@@ -1,7 +1,7 @@
 import { LoanPrepaymentCalculator } from "@/features/loan-prepayment/LoanPrepaymentCalculator"
 
 export const metadata = {
-  title: "Loan Prepayment Planner | FinanceHub",
+  title: "Loan Prepayment Planner | CalcNiv",
   description: "Calculate how much interest and time you can save by paying extra towards your loan every month.",
 }
 

@@ -49,7 +49,7 @@ export function SIPCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Input Section */}
-        <Card className="lg:col-span-5 p-6 border-indigo-100 dark:border-indigo-950">
+        <Card className="lg:col-span-5 p-6 border-brand-100 dark:border-brand-950">
           <div className="space-y-8">
             <Tabs value={investmentType} onValueChange={handleTypeChange} className="w-full">
               <TabsList className="grid w-full grid-cols-2">
@@ -140,7 +140,7 @@ export function SIPCalculator() {
 
       {/* SEBI Compliance Disclaimer */}
       <div className="mt-8 flex gap-3 items-start bg-muted/40 text-muted-foreground p-4 rounded-xl border text-sm">
-        <Info className="w-5 h-5 shrink-0 text-indigo-600 dark:text-indigo-500 mt-0.5" />
+        <Info className="w-5 h-5 shrink-0 text-brand-600 dark:text-brand-500 mt-0.5" />
         <div className="space-y-1">
           <p className="font-semibold text-foreground">Important Note on Projections (AMFI / SEBI Guidelines)</p>
           <p>This calculator is for illustration purposes only and does not represent actual returns. Mutual fund investments are subject to market risks, and the stock market does not offer fixed returns. In accordance with AMFI guidelines, the expected rate of return in this calculator is capped at 13% p.a. based on historical rolling returns, and it should not be construed as a promise, guarantee, or forecast of future returns.</p>

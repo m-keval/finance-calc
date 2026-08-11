@@ -139,18 +139,18 @@ export function InvestVsRepayCalculator() {
 
         {/* Right Column: Results */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className={`border-none ${winner === 'Invest' ? 'bg-indigo-500/10' : 'bg-purple-500/10'}`}>
+          <Card className={`border-none ${winner === 'Invest' ? 'bg-brand-500/10' : 'bg-purple-500/10'}`}>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-muted-foreground mb-1">Clear Winner</p>
-                <h3 className={`text-3xl font-bold ${winner === 'Invest' ? 'text-indigo-600 dark:text-indigo-400' : 'text-purple-600 dark:text-purple-400'}`}>
+                <h3 className={`text-3xl font-bold ${winner === 'Invest' ? 'text-brand-600 dark:text-brand-400' : 'text-purple-600 dark:text-purple-400'}`}>
                   {winner === 'Invest' ? 'Invest the Surplus' : 'Prepay the Loan'}
                 </h3>
                 <p className="text-sm mt-2 text-muted-foreground">
                   Leaves you with <span className="font-bold text-foreground">{formatCurrency(difference)}</span> more net wealth at the end of {remainingYears} years.
                 </p>
               </div>
-              <div className={`p-4 rounded-full ${winner === 'Invest' ? 'bg-indigo-500/20 text-indigo-600' : 'bg-purple-500/20 text-purple-600'}`}>
+              <div className={`p-4 rounded-full ${winner === 'Invest' ? 'bg-brand-500/20 text-brand-600' : 'bg-purple-500/20 text-purple-600'}`}>
                 {winner === 'Invest' ? <TrendingUp className="w-10 h-10" /> : <ArrowDown className="w-10 h-10" />}
               </div>
             </CardContent>
@@ -160,7 +160,7 @@ export function InvestVsRepayCalculator() {
             <Card className="border-none bg-card/50 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-5 h-5 text-indigo-500" />
+                  <TrendingUp className="w-5 h-5 text-brand-500" />
                   <h4 className="font-semibold">If you Invest</h4>
                 </div>
                 <div className="space-y-4">
@@ -170,7 +170,7 @@ export function InvestVsRepayCalculator() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Final Wealth Created</p>
-                    <p className="text-xl font-bold text-indigo-600 dark:text-indigo-400">{formatCurrency(invest.finalWealth)}</p>
+                    <p className="text-xl font-bold text-brand-600 dark:text-brand-400">{formatCurrency(invest.finalWealth)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -206,7 +206,7 @@ export function InvestVsRepayCalculator() {
             <Card className="border-none bg-card/50 backdrop-blur-sm">
               <CardContent className="p-4 flex items-center justify-between">
                 <div className="text-sm text-muted-foreground">Months Saved (Prepay)</div>
-                <div className="font-bold text-indigo-500">{repay.monthsSaved} months</div>
+                <div className="font-bold text-brand-500">{repay.monthsSaved} months</div>
               </CardContent>
             </Card>
           </div>

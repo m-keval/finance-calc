@@ -14,7 +14,7 @@ interface ResultCardProps {
 
 const variantStyles: Record<ResultCardVariant, { card: string; value: string }> = {
   default:    { card: "", value: "" },
-  highlight:  { card: "border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/20", value: "text-indigo-600 dark:text-indigo-400" },
+  highlight:  { card: "border-brand-500 bg-brand-50/50 dark:bg-brand-950/20", value: "text-brand-600 dark:text-brand-400" },
   principal:  { card: "border-blue-400 bg-blue-50/50 dark:bg-blue-950/20", value: "text-blue-600 dark:text-blue-400" },
   returns:    { card: "border-amber-400 bg-amber-50/50 dark:bg-amber-950/20", value: "text-amber-600 dark:text-amber-400" },
   interest:   { card: "border-amber-400 bg-amber-50/50 dark:bg-amber-950/20", value: "text-amber-600 dark:text-amber-400" },
