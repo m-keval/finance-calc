@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { NumberInput } from "@/components/shared/NumberInput"
+import { AutoScaleValue } from "@/components/shared/AutoScaleValue"
 import { calculateIncomeTax, formatCurrency } from "@/lib/math"
 import { Card } from "@/components/ui/card"
 import { Calculator, CheckCircle2, AlertTriangle, FileText } from "lucide-react"
@@ -58,7 +59,7 @@ export function IncomeTaxCalculator() {
 
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="p-8 border-2 border-brand-100 dark:border-brand-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
+          <Card className="p-8 border border-brand-100 dark:border-brand-900 relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Calculator className="w-32 h-32" />
             </div>
@@ -69,15 +70,16 @@ export function IncomeTaxCalculator() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className={`p-6 rounded-xl border-2 transition-all ${results.betterRegime === 'new' ? 'bg-brand-50 border-brand-500 dark:bg-brand-950/50 shadow-md' : 'bg-card border-border shadow-sm'}`}>
-                <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center justify-between">
+              <div className={`p-6 rounded-xl border transition-all ${results.betterRegime === 'new' ? 'bg-brand-50 border-brand-500 dark:bg-brand-950/50' : 'bg-card border-border'}`}>
+                <div className="text-sm font-bold text-muted-foreground mb-3 flex items-center justify-between">
                   <span className="flex items-center gap-2">New Tax Regime</span>
                   {results.betterRegime === 'new' && <CheckCircle2 className="w-5 h-5 text-brand-600 dark:text-brand-400" />}
                 </div>
-                <div className="text-4xl font-black text-foreground mb-1 tracking-tight">
-                  {formatCurrency(results.finalTaxNew)}
-                </div>
-                <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400 h-5">
+                <AutoScaleValue
+                  value={formatCurrency(results.finalTaxNew)}
+                  className="text-3xl sm:text-4xl font-black text-foreground tracking-tight"
+                />
+                <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400 h-5 mt-1">
                   {results.taxSavedNew > 0 ? `Saves ${formatCurrency(results.taxSavedNew)}` : ''}
                 </div>
                 <div className="mt-4 pt-4 border-t text-xs text-muted-foreground space-y-1">
@@ -92,15 +94,16 @@ export function IncomeTaxCalculator() {
                 </div>
               </div>
 
-              <div className={`p-6 rounded-xl border-2 transition-all ${results.betterRegime === 'old' ? 'bg-brand-50 border-brand-500 dark:bg-brand-950/50 shadow-md' : 'bg-card border-border shadow-sm'}`}>
-                <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center justify-between">
+              <div className={`p-6 rounded-xl border transition-all ${results.betterRegime === 'old' ? 'bg-brand-50 border-brand-500 dark:bg-brand-950/50' : 'bg-card border-border'}`}>
+                <div className="text-sm font-bold text-muted-foreground mb-3 flex items-center justify-between">
                   <span className="flex items-center gap-2">Old Tax Regime</span>
                   {results.betterRegime === 'old' && <CheckCircle2 className="w-5 h-5 text-brand-600 dark:text-brand-400" />}
                 </div>
-                <div className="text-4xl font-black text-foreground mb-1 tracking-tight">
-                  {formatCurrency(results.finalTaxOld)}
-                </div>
-                <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400 h-5">
+                <AutoScaleValue
+                  value={formatCurrency(results.finalTaxOld)}
+                  className="text-3xl sm:text-4xl font-black text-foreground tracking-tight"
+                />
+                <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400 h-5 mt-1">
                   {results.taxSavedOld > 0 ? `Saves ${formatCurrency(results.taxSavedOld)}` : ''}
                 </div>
                 <div className="mt-4 pt-4 border-t text-xs text-muted-foreground space-y-1">

@@ -92,7 +92,7 @@ export function CapitalGainsCalculator() {
 
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="p-8 border-2 border-brand-100 dark:border-brand-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
+          <Card className="p-8 border border-brand-100 dark:border-brand-900 relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Calculator className="w-32 h-32" />
             </div>
@@ -105,19 +105,19 @@ export function CapitalGainsCalculator() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="p-4 rounded-xl bg-card border shadow-sm">
+              <div className="p-4 rounded-xl bg-card border">
                 <div className="text-xs font-medium text-muted-foreground mb-1">Total Gain</div>
                 <div className="text-xl font-bold text-foreground">
                   {formatCurrency(results.totalGain)}
                 </div>
               </div>
-              <div className="p-4 rounded-xl bg-card border shadow-sm border-brand-200 dark:border-brand-800">
+              <div className="p-4 rounded-xl bg-card border border-brand-200 dark:border-brand-800">
                 <div className="text-xs font-medium text-muted-foreground mb-1">Tax Liability</div>
                 <div className="text-xl font-bold text-brand-600 dark:text-brand-400">
                   {formatCurrency(results.taxLiability)}
                 </div>
               </div>
-              <div className="p-4 rounded-xl bg-card border shadow-sm border-emerald-200 dark:border-emerald-800">
+              <div className="p-4 rounded-xl bg-card border border-emerald-200 dark:border-emerald-800">
                 <div className="text-xs font-medium text-muted-foreground mb-1">Net Profit</div>
                 <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
                   {formatCurrency(results.netProfit)}

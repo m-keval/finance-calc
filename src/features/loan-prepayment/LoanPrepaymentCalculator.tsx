@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { NumberInput } from "@/components/shared/NumberInput"
+import { AutoScaleValue } from "@/components/shared/AutoScaleValue"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { formatCurrency } from "@/lib/math"
 import { Info, FastForward, CheckCircle2 } from "lucide-react"
@@ -112,17 +113,18 @@ export function LoanPrepaymentCalculator() {
         <div className="lg:col-span-7 space-y-6">
           
           <Card className="border-none bg-brand-500/10">
-            <CardContent className="p-6 flex items-center justify-between">
-              <div>
+            <CardContent className="p-6 flex items-center justify-between gap-4 overflow-hidden">
+              <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-muted-foreground mb-1">Total Savings</p>
-                <h3 className="text-3xl font-bold text-brand-600 dark:text-brand-400">
-                  {formatCurrency(saved.interest)}
-                </h3>
+                <AutoScaleValue
+                  value={formatCurrency(saved.interest)}
+                  className="text-brand-600 dark:text-brand-400"
+                />
                 <p className="text-sm mt-2 text-muted-foreground">
                   You will close your loan <span className="font-bold text-foreground">{Math.floor(saved.months / 12)} years and {saved.months % 12} months</span> earlier!
                 </p>
               </div>
-              <div className="p-4 rounded-full bg-brand-500/20 text-brand-600">
+              <div className="p-4 rounded-full bg-brand-500/20 text-brand-600 shrink-0">
                 <FastForward className="w-10 h-10" />
               </div>
             </CardContent>
@@ -130,16 +132,16 @@ export function LoanPrepaymentCalculator() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card className="border-none bg-card/50 backdrop-blur-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-6 overflow-hidden">
                 <h4 className="font-semibold text-muted-foreground mb-4">Original Loan</h4>
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm text-muted-foreground">Monthly EMI</p>
-                    <p className="text-xl font-bold">{formatCurrency(base.emi)}</p>
+                    <AutoScaleValue value={formatCurrency(base.emi)} />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Total Interest</p>
-                    <p className="text-lg font-medium">{formatCurrency(base.interest)}</p>
+                    <p className="text-lg font-medium truncate">{formatCurrency(base.interest)}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Time to debt-free</p>
@@ -149,8 +151,8 @@ export function LoanPrepaymentCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="border-none bg-card/50 backdrop-blur-sm ring-1 ring-brand-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-              <CardContent className="p-6">
+            <Card className="border-none bg-card/50 backdrop-blur-sm ring-1 ring-brand-500/30">
+              <CardContent className="p-6 overflow-hidden">
                 <div className="flex items-center gap-2 mb-4">
                   <CheckCircle2 className="w-5 h-5 text-brand-500" />
                   <h4 className="font-semibold">With Prepayment</h4>
@@ -158,11 +160,11 @@ export function LoanPrepaymentCalculator() {
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm text-brand-600/70 dark:text-brand-400/70">New Monthly Outflow</p>
-                    <p className="text-xl font-bold text-brand-600 dark:text-brand-400">{formatCurrency(revised.payment)}</p>
+                    <AutoScaleValue value={formatCurrency(revised.payment)} className="text-brand-600 dark:text-brand-400" />
                   </div>
                   <div>
                     <p className="text-sm text-brand-600/70 dark:text-brand-400/70">Total Interest</p>
-                    <p className="text-lg font-medium text-brand-600 dark:text-brand-400">{formatCurrency(revised.interest)}</p>
+                    <p className="text-lg font-medium text-brand-600 dark:text-brand-400 truncate">{formatCurrency(revised.interest)}</p>
                   </div>
                   <div>
                     <p className="text-sm text-brand-600/70 dark:text-brand-400/70">Time to debt-free</p>

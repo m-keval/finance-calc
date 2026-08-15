@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { NumberInput } from "@/components/shared/NumberInput"
-import { ResultCard } from "@/components/shared/ResultCard"
+import { AutoScaleValue } from "@/components/shared/AutoScaleValue"
 import { calculateHRA, formatCurrency } from "@/lib/math"
 import { Card } from "@/components/ui/card"
 import { Building, MapPin, Calculator, HelpCircle } from "lucide-react"
@@ -96,7 +96,7 @@ export function HraCalculator() {
 
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="p-8 border-2 border-brand-100 dark:border-brand-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
+          <Card className="p-8 border border-brand-100 dark:border-brand-900 relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Calculator className="w-32 h-32" />
             </div>
@@ -107,28 +107,30 @@ export function HraCalculator() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl bg-card border shadow-sm">
-                <div className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
+              <div className="p-6 rounded-xl bg-card border overflow-hidden">
+                <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                   <Building className="w-4 h-4 text-emerald-500" />
                   Exempt HRA
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">
-                  {formatCurrency(results.exemptHRA)}
-                </div>
-                <div className="text-xs text-muted-foreground">
+                <AutoScaleValue
+                  value={formatCurrency(results.exemptHRA)}
+                  className="text-foreground"
+                />
+                <div className="text-xs text-muted-foreground mt-2">
                   (Tax-free portion)
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl bg-card border shadow-sm">
-                <div className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
+              <div className="p-6 rounded-xl bg-card border overflow-hidden">
+                <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                   <HelpCircle className="w-4 h-4 text-rose-500" />
                   Taxable HRA
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">
-                  {formatCurrency(results.taxableHRA)}
-                </div>
-                <div className="text-xs text-muted-foreground">
+                <AutoScaleValue
+                  value={formatCurrency(results.taxableHRA)}
+                  className="text-foreground"
+                />
+                <div className="text-xs text-muted-foreground mt-2">
                   (Added to taxable income)
                 </div>
               </div>

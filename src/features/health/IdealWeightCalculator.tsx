@@ -30,21 +30,16 @@ export function IdealWeightCalculator() {
   }, [gender, height, unitSystem])
 
   const idealWeight = unitSystem === 'metric' ? idealWeightMetric : idealWeightMetric * 2.20462;
-
-  // Calculate a healthy range around the ideal weight (+/- 10%)
   const rangeLow = idealWeight * 0.9;
   const rangeHigh = idealWeight * 1.1;
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        {/* Left Column: Inputs */}
-        <div className="lg:col-span-5 space-y-6">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-5 space-y-4">
           <Card className="border-none bg-card/50 backdrop-blur-sm">
-            <CardContent className="p-6 space-y-8">
-              
-              <div className="space-y-3">
+            <CardContent className="p-4 space-y-4">
+              <div className="space-y-2">
                 <label className="text-xs font-bold text-muted-foreground">UNIT SYSTEM</label>
                 <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
@@ -53,11 +48,8 @@ export function IdealWeightCalculator() {
                   </TabsList>
                 </Tabs>
               </div>
-
-              <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground">
-                  Gender
-                </label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-muted-foreground">Gender</label>
                 <Tabs value={gender} onValueChange={(v) => setGender(v as "male" | "female")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="male">Male</TabsTrigger>
@@ -65,59 +57,20 @@ export function IdealWeightCalculator() {
                   </TabsList>
                 </Tabs>
               </div>
-
-              <NumberInput
-                label="AGE (YEARS)"
-                value={age}
-                onChange={setAge}
-                min={1}
-                max={120}
-                step={1}
-                prefix=""
-                suffix=" Yr"
-              />
-
-              <NumberInput
-                label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`}
-                value={height}
-                onChange={setHeight}
-                min={unitSystem === 'metric' ? 50 : 20}
-                max={unitSystem === 'metric' ? 300 : 120}
-                step={1}
-                prefix=""
-                suffix={unitSystem === 'metric' ? " cm" : " in"}
-              />
-
+              <NumberInput label="AGE (YEARS)" value={age} onChange={setAge} min={1} max={120} step={1} prefix="" suffix=" Yr" />
+              <NumberInput label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`} value={height} onChange={setHeight} min={unitSystem === 'metric' ? 50 : 20} max={unitSystem === 'metric' ? 300 : 120} step={1} prefix="" suffix={unitSystem === 'metric' ? " cm" : " in"} />
             </CardContent>
           </Card>
         </div>
 
-        {/* Right Column: Results */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <ResultCard
-              title="IDEAL WEIGHT"
-              value={`${idealWeight.toFixed(1)}`}
-              subValue={unitSystem === 'metric' ? "Kilograms (kg)" : "Pounds (lbs)"}
-              highlight
-            />
-            <ResultCard
-              title="HEALTHY RANGE"
-              value={`${rangeLow.toFixed(1)} - ${rangeHigh.toFixed(1)}`}
-              subValue={unitSystem === 'metric' ? "Kilograms (kg)" : "Pounds (lbs)"}
-            />
+        <div className="lg:col-span-7 space-y-4">
+          <div className="grid grid-cols-2 gap-3">
+            <ResultCard title="IDEAL WEIGHT" value={`${idealWeight.toFixed(1)}`} subValue={unitSystem === 'metric' ? "kg" : "lbs"} highlight />
+            <ResultCard title="HEALTHY RANGE" value={`${rangeLow.toFixed(1)} - ${rangeHigh.toFixed(1)}`} subValue={unitSystem === 'metric' ? "kg" : "lbs"} />
           </div>
-          
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
-            <div className="space-y-2">
-              <p>
-                Calculated using the <strong>Devine Formula</strong>, which is the most widely used formula for estimating ideal body weight.
-              </p>
-              <p>
-                Keep in mind that &quot;ideal&quot; weight is a general medical guideline. Factors like muscle mass, bone density, and body composition are not accounted for in this simple height-based calculation.
-              </p>
-            </div>
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground border border-border/50">
+            <Info className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+            <p>Calculated using the Devine Formula. "Ideal" weight is a general guideline — muscle mass, bone density, and body composition are not accounted for.</p>
           </div>
         </div>
       </div>

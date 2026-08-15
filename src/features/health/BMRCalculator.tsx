@@ -34,15 +34,12 @@ export function BMRCalculator() {
   }, [weight, height, age, gender, unitSystem])
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        {/* Left Column: Inputs */}
-        <div className="lg:col-span-6 space-y-6">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-6 space-y-4">
           <Card className="border-none bg-card/50 backdrop-blur-sm">
-            <CardContent className="p-6 space-y-8">
-              
-              <div className="space-y-3">
+            <CardContent className="p-4 space-y-4">
+              <div className="space-y-2">
                 <label className="text-xs font-bold text-muted-foreground">UNIT SYSTEM</label>
                 <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as "metric" | "imperial")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
@@ -51,11 +48,8 @@ export function BMRCalculator() {
                   </TabsList>
                 </Tabs>
               </div>
-
-              <div className="space-y-3">
-                <label className="text-xs font-bold text-muted-foreground">
-                  Gender
-                </label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-muted-foreground">Gender</label>
                 <Tabs value={gender} onValueChange={(v) => setGender(v as "male" | "female")} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="male">Male</TabsTrigger>
@@ -63,58 +57,18 @@ export function BMRCalculator() {
                   </TabsList>
                 </Tabs>
               </div>
-
-              <NumberInput
-                label="AGE (YEARS)"
-                value={age}
-                onChange={setAge}
-                min={1}
-                max={120}
-                step={1}
-                prefix=""
-                suffix=" Yr"
-              />
-
-              <NumberInput
-                label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`}
-                value={height}
-                onChange={setHeight}
-                min={unitSystem === 'metric' ? 50 : 20}
-                max={unitSystem === 'metric' ? 300 : 120}
-                step={1}
-                prefix=""
-                suffix={unitSystem === 'metric' ? " cm" : " in"}
-              />
-              
-              <NumberInput
-                label={`WEIGHT (${unitSystem === 'metric' ? 'KG' : 'LBS'})`}
-                value={weight}
-                onChange={setWeight}
-                min={unitSystem === 'metric' ? 20 : 45}
-                max={unitSystem === 'metric' ? 300 : 660}
-                step={1}
-                prefix=""
-                suffix={unitSystem === 'metric' ? " kg" : " lbs"}
-              />
-
+              <NumberInput label="AGE (YEARS)" value={age} onChange={setAge} min={1} max={120} step={1} prefix="" suffix=" Yr" />
+              <NumberInput label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`} value={height} onChange={setHeight} min={unitSystem === 'metric' ? 50 : 20} max={unitSystem === 'metric' ? 300 : 120} step={1} prefix="" suffix={unitSystem === 'metric' ? " cm" : " in"} />
+              <NumberInput label={`WEIGHT (${unitSystem === 'metric' ? 'KG' : 'LBS'})`} value={weight} onChange={setWeight} min={unitSystem === 'metric' ? 20 : 45} max={unitSystem === 'metric' ? 300 : 660} step={1} prefix="" suffix={unitSystem === 'metric' ? " kg" : " lbs"} />
             </CardContent>
           </Card>
         </div>
 
-        {/* Right Column: Results */}
-        <div className="lg:col-span-6 space-y-6">
-          <ResultCard
-            title="YOUR BMR (BASAL METABOLIC RATE)"
-            value={bmr.toFixed(0)}
-            subValue="Calories / day"
-            highlight
-          />
-          
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
-            <p>
-              Your Basal Metabolic Rate (BMR) represents the number of calories your body burns at rest just to maintain basic life functions (breathing, circulating blood, cell production). To calculate your total daily caloric needs, you must multiply this number by your activity level.
-            </p>
+        <div className="lg:col-span-6 space-y-4">
+          <ResultCard title="YOUR BMR" value={bmr.toFixed(0)} subValue="Calories / day" highlight />
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground border border-border/50">
+            <Info className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+            <p>Your Basal Metabolic Rate represents the calories your body burns at rest. Multiply by activity level for total daily needs.</p>
           </div>
         </div>
       </div>

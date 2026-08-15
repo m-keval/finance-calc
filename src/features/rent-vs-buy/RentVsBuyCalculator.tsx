@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import { NumberInput } from "@/components/shared/NumberInput"
 import { ResultCard } from "@/components/shared/ResultCard"
+import { AutoScaleValue } from "@/components/shared/AutoScaleValue"
 import { calculateRentVsBuy, formatCurrency } from "@/lib/math"
 import { Card } from "@/components/ui/card"
 import { TrendingUp, Home, Calculator } from "lucide-react"
@@ -135,39 +136,36 @@ export function RentVsBuyCalculator() {
 
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="p-8 border-2 border-brand-100 dark:border-brand-900 shadow-sm relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
+          <Card className="p-8 border border-brand-100 dark:border-brand-900 relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Calculator className="w-32 h-32" />
             </div>
             
             <h2 className="text-2xl font-bold mb-2">The Verdict</h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              After {loanTenure} years, <span className="font-bold text-foreground">{results.isBuyingBetter ? "Buying" : "Renting"}</span> is financially better by <span className="font-bold text-brand-600 dark:text-brand-400">{formatCurrency(results.difference)}</span>.
+            <p className="text-muted-foreground mb-8 text-base sm:text-lg leading-relaxed">
+              After {loanTenure} years, <span className="font-bold text-foreground">{results.isBuyingBetter ? "Buying" : "Renting"}</span> is financially better by{" "}
+              <span className="font-bold text-brand-600 dark:text-brand-400 break-all">{formatCurrency(results.difference)}</span>.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl bg-card border shadow-sm">
-                <div className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
+              <div className="p-6 rounded-xl bg-card border overflow-hidden">
+                <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                   <Home className="w-4 h-4 text-brand-500" />
                   Net Worth if Buying
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">
-                  {formatCurrency(results.finalNetWorthBuy)}
-                </div>
-                <div className="text-xs text-muted-foreground">
+                <AutoScaleValue value={formatCurrency(results.finalNetWorthBuy)} className="text-foreground" />
+                <div className="text-xs text-muted-foreground mt-2 truncate">
                   (Property Value: {formatCurrency(results.finalPropertyValue)})
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl bg-card border shadow-sm">
-                <div className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
+              <div className="p-6 rounded-xl bg-card border overflow-hidden">
+                <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-500" />
                   Net Worth if Renting
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">
-                  {formatCurrency(results.finalNetWorthRent)}
-                </div>
-                <div className="text-xs text-muted-foreground">
+                <AutoScaleValue value={formatCurrency(results.finalNetWorthRent)} className="text-foreground" />
+                <div className="text-xs text-muted-foreground mt-2 truncate">
                   (Investment Portfolio Size)
                 </div>
               </div>

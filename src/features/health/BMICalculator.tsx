@@ -34,14 +34,12 @@ export function BMICalculator() {
   }, [weight, height, unitSystem])
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        {/* Left Column: Inputs */}
-        <div className="lg:col-span-5 space-y-6">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-5 space-y-4">
           <Card className="border-none bg-card/50 backdrop-blur-sm">
-            <CardContent className="p-6 space-y-8">
-              <div className="space-y-3">
+            <CardContent className="p-4 space-y-4">
+              <div className="space-y-2">
                 <label className="text-xs font-bold text-muted-foreground">UNIT SYSTEM</label>
                 <Tabs value={unitSystem} onValueChange={(v) => handleUnitToggle(v as 'metric' | 'imperial')} className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
@@ -50,92 +48,48 @@ export function BMICalculator() {
                   </TabsList>
                 </Tabs>
               </div>
-
-              <NumberInput
-                label="AGE (YEARS)"
-                value={age}
-                onChange={setAge}
-                min={1}
-                max={120}
-                step={1}
-                prefix=""
-                suffix=" Yr"
-              />
-              
-              <NumberInput
-                label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`}
-                value={height}
-                onChange={setHeight}
-                min={unitSystem === 'metric' ? 50 : 20}
-                max={unitSystem === 'metric' ? 300 : 120}
-                step={1}
-                prefix=""
-                suffix={unitSystem === 'metric' ? " cm" : " in"}
-              />
-              
-              <NumberInput
-                label={`WEIGHT (${unitSystem === 'metric' ? 'KG' : 'LBS'})`}
-                value={weight}
-                onChange={setWeight}
-                min={unitSystem === 'metric' ? 20 : 45}
-                max={unitSystem === 'metric' ? 300 : 660}
-                step={1}
-                prefix=""
-                suffix={unitSystem === 'metric' ? " kg" : " lbs"}
-              />
+              <NumberInput label="AGE (YEARS)" value={age} onChange={setAge} min={1} max={120} step={1} prefix="" suffix=" Yr" />
+              <NumberInput label={`HEIGHT (${unitSystem === 'metric' ? 'CM' : 'IN'})`} value={height} onChange={setHeight} min={unitSystem === 'metric' ? 50 : 20} max={unitSystem === 'metric' ? 300 : 120} step={1} prefix="" suffix={unitSystem === 'metric' ? " cm" : " in"} />
+              <NumberInput label={`WEIGHT (${unitSystem === 'metric' ? 'KG' : 'LBS'})`} value={weight} onChange={setWeight} min={unitSystem === 'metric' ? 20 : 45} max={unitSystem === 'metric' ? 300 : 660} step={1} prefix="" suffix={unitSystem === 'metric' ? " kg" : " lbs"} />
             </CardContent>
           </Card>
         </div>
 
-        {/* Right Column: Results */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-4">
           <Card className="border-none bg-card/50 backdrop-blur-sm">
-            <CardContent className="pt-6">
+            <CardContent className="p-4">
               <BMIGauge score={score} />
             </CardContent>
           </Card>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <ResultCard
-              title="YOUR BMI SCORE"
-              value={score.toFixed(1)}
-              highlight
-            />
-            <ResultCard
-              title="CATEGORY"
-              value={category}
-            />
+
+          <div className="grid grid-cols-2 gap-3">
+            <ResultCard title="YOUR BMI SCORE" value={score.toFixed(1)} highlight />
+            <ResultCard title="CATEGORY" value={category} />
           </div>
-          
+
           <Card className="border-none bg-card/50 backdrop-blur-sm overflow-hidden">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-6 tracking-tight">BMI Categories</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-blue-500/10 text-blue-700 dark:text-blue-400">
-                  <span>Underweight</span>
-                  <span className="font-medium">&lt; 18.5</span>
+            <CardContent className="p-4">
+              <h3 className="text-sm font-semibold mb-3 tracking-tight">BMI Categories</h3>
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-xs items-center p-2 rounded-lg bg-blue-500/10 text-blue-700 dark:text-blue-400">
+                  <span>Underweight</span><span className="font-medium">&lt; 18.5</span>
                 </div>
-                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-brand-500/10 text-brand-700 dark:text-brand-400">
-                  <span>Normal weight</span>
-                  <span className="font-medium">18.5 - 24.9</span>
+                <div className="flex justify-between text-xs items-center p-2 rounded-lg bg-brand-500/10 text-brand-700 dark:text-brand-400">
+                  <span>Normal weight</span><span className="font-medium">18.5 - 24.9</span>
                 </div>
-                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-400">
-                  <span>Overweight</span>
-                  <span className="font-medium">25 - 29.9</span>
+                <div className="flex justify-between text-xs items-center p-2 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                  <span>Overweight</span><span className="font-medium">25 - 29.9</span>
                 </div>
-                <div className="flex justify-between text-sm items-center p-3 rounded-lg bg-red-500/10 text-red-700 dark:text-red-400">
-                  <span>Obese</span>
-                  <span className="font-medium">&ge; 30</span>
+                <div className="flex justify-between text-xs items-center p-2 rounded-lg bg-red-500/10 text-red-700 dark:text-red-400">
+                  <span>Obese</span><span className="font-medium">&ge; 30</span>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/50">
-            <Info className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
-            <p>
-              BMI is a useful measure of overweight and obesity. It is calculated from your height and weight. BMI is an estimate of body fat and a good gauge of your risk for diseases that can occur with more body fat.
-            </p>
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground border border-border/50">
+            <Info className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+            <p>BMI is a useful measure of overweight and obesity. It is calculated from your height and weight.</p>
           </div>
         </div>
       </div>

@@ -42,13 +42,13 @@ export function GrowthChart({
   const isDark = resolvedTheme === "dark"
 
   return (
-    <Card>
+    <Card className="border-border/60">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        {description && <CardDescription>{description}</CardDescription>}
+        <CardTitle className="text-base font-semibold">{title}</CardTitle>
+        {description && <CardDescription className="text-sm leading-relaxed">{description}</CardDescription>}
       </CardHeader>
       <CardContent>
-        <div className="h-[300px] sm:h-[400px] w-full mt-4">
+        <div className="h-[300px] sm:h-[380px] w-full mt-2">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={data}
@@ -64,23 +64,24 @@ export function GrowthChart({
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="5%" stopColor={area.color} stopOpacity={0.3} />
+                    <stop offset="5%" stopColor={area.color} stopOpacity={0.25} />
                     <stop offset="95%" stopColor={area.color} stopOpacity={0} />
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid 
-                strokeDasharray="3 3" 
-                vertical={false} 
-                stroke={isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"} 
+              <CartesianGrid
+                strokeDasharray="3 3"
+                vertical={false}
+                stroke={isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"}
               />
               <XAxis
                 dataKey={xAxisKey}
                 axisLine={false}
                 tickLine={false}
                 tickMargin={10}
-                stroke={isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"}
+                stroke={isDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)"}
                 fontSize={12}
+                fontWeight={500}
               />
               <YAxis
                 axisLine={false}
@@ -91,21 +92,23 @@ export function GrowthChart({
                   if (value >= 1000) return `₹${(value / 1000).toFixed(0)}k`
                   return `₹${value}`
                 }}
-                stroke={isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"}
+                stroke={isDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)"}
                 fontSize={12}
+                fontWeight={500}
                 width={60}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: isDark ? "#1e293b" : "#ffffff",
                   borderColor: isDark ? "#334155" : "#e2e8f0",
-                  borderRadius: "8px",
-                  boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                  borderRadius: "12px",
+                  boxShadow: "0 10px 25px -5px rgb(0 0 0 / 0.1)",
+                  padding: "12px 16px",
                 }}
                 itemStyle={{ fontSize: "14px", fontWeight: 500 }}
-                labelStyle={{ color: isDark ? "#94a3b8" : "#64748b", marginBottom: "4px" }}
+                labelStyle={{ color: isDark ? "#94a3b8" : "#64748b", marginBottom: "6px", fontWeight: 600 }}
                 formatter={(value: any, name: any) => [valueFormatter(Number(value)), name]}
-                labelFormatter={(label) => `Year: ${label}`}
+                labelFormatter={(label) => `Year ${label}`}
               />
               {areas.map((area) => (
                 <Area
@@ -114,10 +117,12 @@ export function GrowthChart({
                   dataKey={area.key}
                   name={area.name}
                   stroke={area.color}
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   fillOpacity={1}
                   fill={`url(#gradient-${area.key})`}
                   stackId="1"
+                  animationDuration={1000}
+                  animationBegin={200}
                 />
               ))}
             </AreaChart>
