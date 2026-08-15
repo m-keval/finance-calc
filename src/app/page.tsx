@@ -464,7 +464,7 @@ export default function Home() {
                 href="/calculators/sip"
                 className={buttonVariants({
                   size: "lg",
-                  className: "h-13 px-8 text-base font-semibold rounded-xl bg-white text-brand-700 hover:bg-white/90 shadow-xl shadow-black/10 hover:-translate-y-0.5 transition-all duration-300",
+                  className: "h-13 px-8 text-base font-semibold rounded-xl !bg-white !text-brand-700 hover:!bg-white/90 shadow-xl shadow-black/10 hover:-translate-y-0.5 transition-all duration-300",
                 })}
               >
                 Get Started Free
