@@ -198,7 +198,7 @@ export function GoalCalculator() {
           <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
             <h4 className="font-bold text-sm text-foreground mb-2">✅ 4. Goal Priority Tagging</h4>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Categorize your goal as <em>Critical</em> (Child's Higher Education, Retirement) or <em>Flexible</em> (Vacation, Luxury Car) so you never compromise on essential milestones.
+              Categorize your goal as <em>Critical</em> (Child&apos;s Higher Education, Retirement) or <em>Flexible</em> (Vacation, Luxury Car) so you never compromise on essential milestones.
             </p>
           </div>
         </div>

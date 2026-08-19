@@ -65,7 +65,7 @@ export function NumberInput({
     // Preserve the decimal point and numbers after it while typing
     const parts = stripped.split(".");
     let integerPart = parts[0];
-    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+    const decimalPart = parts.length > 1 ? "." + parts[1] : "";
     
     if (integerPart) {
       integerPart = parseInt(integerPart, 10).toLocaleString("en-IN");

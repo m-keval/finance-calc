@@ -211,7 +211,7 @@ export function HraCalculator() {
           <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
             <h4 className="font-bold text-sm text-foreground mb-2">📋 1. Landlord PAN Requirement</h4>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              If your total annual rent paid exceeds <strong>₹1,00,000 (₹8,333/month)</strong>, submitting your landlord's PAN to your employer is mandatory under income tax rules.
+              If your total annual rent paid exceeds <strong>₹1,00,000 (₹8,333/month)</strong>, submitting your landlord&apos;s PAN to your employer is mandatory under income tax rules.
             </p>
           </div>
 

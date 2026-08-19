@@ -138,7 +138,7 @@ export function calculateDateDiff(
   endDate: Date,
   includeEndDate: boolean = false
 ): DateDiffResult {
-  let start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
+  const start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
   let end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
 
   if (includeEndDate) {
@@ -445,14 +445,14 @@ export function calculateAge(birthDate: Date, onDate: Date = new Date()): AgeRes
   const diff = calculateDateDiff(birthDate, onDate)
 
   // Next birthday calculation
-  let nextBirthdayYear = onDate.getFullYear()
+  const nextBirthdayYear = onDate.getFullYear()
   let nextBirthday = new Date(nextBirthdayYear, birthDate.getMonth(), birthDate.getDate())
   if (nextBirthday <= onDate) {
     nextBirthday = new Date(nextBirthdayYear + 1, birthDate.getMonth(), birthDate.getDate())
   }
 
   // Previous birthday
-  let prevBirthday = new Date(nextBirthday.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate())
+  const prevBirthday = new Date(nextBirthday.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate())
   const totalDaysInCurrentYearSpan = Math.floor((nextBirthday.getTime() - prevBirthday.getTime()) / (1000 * 60 * 60 * 24))
   const daysPassedSinceLastBirthday = Math.max(0, Math.floor((onDate.getTime() - prevBirthday.getTime()) / (1000 * 60 * 60 * 24)))
   const yearProgressPercent = Math.min(100, Math.max(0, Math.round((daysPassedSinceLastBirthday / totalDaysInCurrentYearSpan) * 100)))
@@ -476,7 +476,7 @@ export function calculateAge(birthDate: Date, onDate: Date = new Date()): AgeRes
 
   // Half-Birthday: 6 months after birth month
   const halfBirthdayMonth = (birthDate.getMonth() + 6) % 12
-  let halfBirthdayYear = onDate.getFullYear()
+  const halfBirthdayYear = onDate.getFullYear()
   let halfBirthday = new Date(halfBirthdayYear, halfBirthdayMonth, birthDate.getDate())
   if (halfBirthday <= onDate) {
     halfBirthday = new Date(halfBirthdayYear + 1, halfBirthdayMonth, birthDate.getDate())
@@ -604,7 +604,7 @@ export function addUnitsToDate(
   options: { years?: number; months?: number; weeks?: number; days?: number; businessDaysOnly?: boolean }
 ): Date {
   const { years = 0, months = 0, weeks = 0, days = 0, businessDaysOnly = false } = options
-  let result = new Date(startDate)
+  const result = new Date(startDate)
 
   if (years !== 0) result.setFullYear(result.getFullYear() + years)
   if (months !== 0) result.setMonth(result.getMonth() + months)
@@ -631,7 +631,7 @@ export function subtractUnitsFromDate(
   options: { years?: number; months?: number; weeks?: number; days?: number; businessDaysOnly?: boolean }
 ): Date {
   const { years = 0, months = 0, weeks = 0, days = 0, businessDaysOnly = false } = options
-  let result = new Date(startDate)
+  const result = new Date(startDate)
 
   if (years !== 0) result.setFullYear(result.getFullYear() - years)
   if (months !== 0) result.setMonth(result.getMonth() - months)
@@ -761,14 +761,14 @@ export function calculateTimeDuration(
   const [startH, startM, startS] = startTime.split(':').map(Number)
   const [endH, endM, endS] = endTime.split(':').map(Number)
 
-  let startTotalSeconds = startH * 3600 + startM * 60 + (startS || 0)
+  const startTotalSeconds = startH * 3600 + startM * 60 + (startS || 0)
   let endTotalSeconds = endH * 3600 + endM * 60 + (endS || 0)
 
   if (endTotalSeconds < startTotalSeconds || crossMidnight) {
     endTotalSeconds += 24 * 3600
   }
 
-  let diffSeconds = Math.max(0, endTotalSeconds - startTotalSeconds)
+  const diffSeconds = Math.max(0, endTotalSeconds - startTotalSeconds)
   const grossHours = Math.floor(diffSeconds / 3600)
   const grossMinutes = Math.floor((diffSeconds % 3600) / 60)
   const grossSec = diffSeconds % 60

@@ -24,14 +24,7 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
         { name: "FD Calculator", href: "/calculators/fd", icon: <PiggyBank className="w-4 h-4" /> },
       ]
     },
-    {
-      title: "Taxation",
-      items: [
-        { name: "Income Tax", href: "/calculators/income-tax", icon: <FileText className="w-4 h-4" /> },
-        { name: "Capital Gains", href: "/calculators/capital-gains", icon: <Landmark className="w-4 h-4" /> },
-        { name: "HRA Exemption", href: "/calculators/hra", icon: <MapPin className="w-4 h-4" /> },
-      ]
-    },
+
     {
       title: "Loans",
       items: [

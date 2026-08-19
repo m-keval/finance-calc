@@ -70,7 +70,7 @@ export function IdealWeightCalculator() {
           </div>
           <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground border border-border/50">
             <Info className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-            <p>Calculated using the Devine Formula. "Ideal" weight is a general guideline — muscle mass, bone density, and body composition are not accounted for.</p>
+            <p>Calculated using the Devine Formula. &quot;Ideal&quot; weight is a general guideline — muscle mass, bone density, and body composition are not accounted for.</p>
           </div>
         </div>
       </div>

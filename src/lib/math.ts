@@ -328,7 +328,7 @@ export function calculateRentVsBuy(buyParams: BuyParams, rentParams: RentParams,
   for (let year = 1; year <= years; year++) {
     let yearlyRentPaid = 0;
     let yearlyEMIPaid = 0;
-    let yearlyMaintenancePaid = yearlyMaintenance; 
+    const yearlyMaintenancePaid = yearlyMaintenance; 
     
     for (let month = 1; month <= 12; month++) {
       yearlyRentPaid += currentRent;
