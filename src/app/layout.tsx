@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Outfit, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -26,18 +27,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.calcniv.in"),
   title: {
     default: "CalcNiv | The foundation for smarter decisions",
     template: "%s | CalcNiv",
   },
   description: "The foundation for smarter decisions through calculation. A premium suite of modern, fast, and accurate tools.",
+  keywords: ["calculator", "finance", "health", "age", "investment", "EMI", "SIP", "tools"],
   openGraph: {
     title: "CalcNiv | Smart Decisions",
     description: "The foundation for smarter decisions through calculation.",
-    url: "https://calcniv.example.com",
+    url: "https://www.calcniv.in",
     siteName: "CalcNiv",
     locale: "en_US",
     type: "website",
+  },
+  alternates: {
+    canonical: "https://www.calcniv.in",
   },
 };
 
@@ -53,11 +59,13 @@ export default function RootLayout({
       className={`${outfitFont.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <script
+        <Script
+          id="adsense"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6742401640080288"
           crossOrigin="anonymous"
-        ></script>
+          strategy="lazyOnload"
+        />
       </head>
       <body suppressHydrationWarning className={`min-h-full flex flex-col font-sans antialiased`}>
         <ThemeProvider
