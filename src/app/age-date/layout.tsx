@@ -2,7 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, Clock, Cake, ArrowRightLeft, Timer, Hash, Plus, Minus, Briefcase, GitCompare, User } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  Cake,
+  ArrowRightLeft,
+  Timer,
+  Hash,
+  Plus,
+  Minus,
+  Briefcase,
+  GitCompare,
+  User,
+} from "lucide-react";
 import { ReactNode } from "react";
 
 export default function AgeDateLayout({ children }: { children: ReactNode }) {
@@ -10,7 +22,7 @@ export default function AgeDateLayout({ children }: { children: ReactNode }) {
 
   const categories = [
     {
-      title: "Age",
+      title: "Age & Milestones",
       items: [
         { name: "Age Calculator", href: "/age-date/age", icon: <User className="w-4 h-4" /> },
         { name: "Age Difference", href: "/age-date/age-difference", icon: <ArrowRightLeft className="w-4 h-4" /> },
@@ -18,14 +30,14 @@ export default function AgeDateLayout({ children }: { children: ReactNode }) {
       ]
     },
     {
-      title: "Birthday",
+      title: "Birthdays",
       items: [
         { name: "Birthday Calculator", href: "/age-date/birthday", icon: <Cake className="w-4 h-4" /> },
         { name: "Birthday Countdown", href: "/age-date/birthday-countdown", icon: <Timer className="w-4 h-4" /> },
       ]
     },
     {
-      title: "Date",
+      title: "Date & Span",
       items: [
         { name: "Date Difference", href: "/age-date/date-difference", icon: <GitCompare className="w-4 h-4" /> },
         { name: "Days Between", href: "/age-date/days-between", icon: <Hash className="w-4 h-4" /> },
@@ -33,7 +45,7 @@ export default function AgeDateLayout({ children }: { children: ReactNode }) {
       ]
     },
     {
-      title: "Date Math",
+      title: "Date Math & Work",
       items: [
         { name: "Date Add", href: "/age-date/date-add", icon: <Plus className="w-4 h-4" /> },
         { name: "Date Subtract", href: "/age-date/date-subtract", icon: <Minus className="w-4 h-4" /> },
@@ -67,17 +79,18 @@ export default function AgeDateLayout({ children }: { children: ReactNode }) {
                       href={calc.href}
                       className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                         isActive
-                          ? "bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-400"
-                          : "text-muted-foreground hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-950/50 dark:hover:text-brand-400"
+                          ? "bg-brand-50 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300 font-semibold shadow-xs"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                       }`}
                     >
-                      <div className={`transition-colors duration-200 ${isActive ? "text-brand-600 dark:text-brand-400" : "text-muted-foreground/50"}`}>
+                      <div
+                        className={`transition-colors duration-200 ${
+                          isActive ? "text-brand-600 dark:text-brand-400" : "text-muted-foreground/60"
+                        }`}
+                      >
                         {calc.icon}
                       </div>
-                      {calc.name}
-                      {isActive && (
-                        <div className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-500" />
-                      )}
+                      <span className="truncate">{calc.name}</span>
                     </Link>
                   );
                 })}
@@ -87,11 +100,9 @@ export default function AgeDateLayout({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content Area */}
       <main className="flex-1 min-w-0 flex flex-col">
-        <div className="flex-1">
-          {children}
-        </div>
+        <div className="flex-1">{children}</div>
       </main>
     </div>
   );

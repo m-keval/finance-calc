@@ -60,10 +60,6 @@ export function IncomeTaxCalculator() {
         {/* Results Section */}
         <div className="lg:col-span-7 space-y-6">
           <Card className="p-8 border border-brand-100 dark:border-brand-900 relative overflow-hidden bg-gradient-to-br from-card to-brand-50/50 dark:to-brand-950/20">
-            <div className="absolute top-0 right-0 p-6 opacity-10">
-              <Calculator className="w-32 h-32" />
-            </div>
-            
             <h2 className="text-2xl font-bold mb-2">Regime Recommendation</h2>
             <p className="text-muted-foreground mb-8 text-lg">
               Based on your inputs, the <span className="font-bold text-foreground capitalize">{results.betterRegime} Tax Regime</span> is better for you.

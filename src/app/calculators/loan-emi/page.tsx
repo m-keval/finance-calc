@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function LoanPage() {
   return (
     <div className="w-full">
-      <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Loan EMI Calculator</h1>
-        <p className="text-muted-foreground max-w-3xl text-lg">
+      <div className="mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Loan EMI Calculator</h1>
+        <p className="text-muted-foreground max-w-3xl text-sm sm:text-base">
           Calculate your Equated Monthly Installment (EMI) for any loan. Understand the proportion of interest versus principal in your total repayment.
         </p>
       </div>

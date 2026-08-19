@@ -181,10 +181,86 @@ export function LoanPrepaymentCalculator() {
           <div className="flex items-start gap-3 p-4 rounded-xl bg-orange-500/10 text-sm text-orange-900 dark:text-orange-300 border border-orange-500/20">
             <Info className="w-5 h-5 shrink-0 mt-0.5 text-orange-600 dark:text-orange-400" />
             <p>
-              <strong>Advisor Note:</strong> By paying just {formatCurrency(extraMonthly)} extra every month, you wipe out a massive {formatCurrency(saved.interest)} in interest payments to the bank. This strategy is extremely effective in the first few years of a long-term loan when the interest component of your EMI is highest.
+              <strong>Advisor Note:</strong> By paying just {formatCurrency(extraMonthly)} extra every month, you wipe out a massive {formatCurrency(saved.interest)} in interest payments to the bank and become debt-free {Math.floor(saved.months / 12)} years earlier!
             </p>
           </div>
 
+        </div>
+      </div>
+
+      {/* Dynamic Result Interpretation & Prepayment Strategy Guidance */}
+      <div className="mt-10 space-y-6">
+        <div className="rounded-2xl p-6 bg-gradient-to-br from-emerald-50 via-card to-brand-50/30 dark:from-emerald-950/40 dark:via-card dark:to-brand-950/20 border border-emerald-200 dark:border-emerald-900/60 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+            <div>
+              <h3 className="text-lg font-bold text-foreground">
+                Prepayment ROI & Debt-Free Acceleration
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Analyzing the impact of +{formatCurrency(extraMonthly)}/month on your ₹{loanAmount.toLocaleString("en-IN")} loan.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-border text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              <span>{((saved.interest / Math.max(1, base.interest)) * 100).toFixed(0)}% Total Interest Slashed</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+            <div className="p-3.5 rounded-xl bg-card/80 border border-border/60">
+              <div className="text-xs text-muted-foreground font-medium">Guaranteed Money Saved</div>
+              <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                {formatCurrency(saved.interest)}
+              </div>
+              <div className="text-[11px] text-muted-foreground mt-1">Direct interest avoided over the tenure.</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-card/80 border border-border/60">
+              <div className="text-xs text-muted-foreground font-medium">Life Years Saved</div>
+              <div className="text-xl font-bold text-brand-600 dark:text-brand-400 mt-0.5">
+                {Math.floor(saved.months / 12)} Yrs {saved.months % 12} Mos
+              </div>
+              <div className="text-[11px] text-muted-foreground mt-1">Earlier completion of your debt obligation.</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-card/80 border border-border/60">
+              <div className="text-xs text-muted-foreground font-medium">Effective Risk-Free Return</div>
+              <div className="text-xl font-bold text-foreground mt-0.5">
+                {loanRate}% p.a.
+              </div>
+              <div className="text-[11px] text-muted-foreground mt-1">Equivalent to guaranteed tax-free return.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Prepayment Rule Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
+            <h4 className="font-bold text-sm text-foreground mb-2">⚡ 1. The Early Years Advantage</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              In the first 5 years of a home loan, up to <strong>70-80% of each EMI goes towards interest</strong>. Prepaying during this window reduces the base principal drastically and gives the highest return on investment.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
+            <h4 className="font-bold text-sm text-foreground mb-2">📜 2. Zero Prepayment Penalty (RBI Mandate)</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              As per RBI regulations, banks and NBFCs <strong>cannot charge any prepayment penalty</strong> on floating-rate individual home loans. You can prepay any amount at any time without fees.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
+            <h4 className="font-bold text-sm text-foreground mb-2">💰 3. Annual Bonus / Lumpsum Prepayment</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              If an extra monthly EMI is difficult, consider deploying annual tax refunds, Diwali bonuses, or incentive payouts (e.g. ₹50,000 to ₹100,000 once a year) directly into loan part-prepayment.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-card border border-border/70 shadow-xs">
+            <h4 className="font-bold text-sm text-foreground mb-2">⚖️ 4. Invest vs Prepay Decision</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              If your home loan rate is 8.5% and expected mutual fund return is 12-14%, investing surplus funds can generate higher wealth mathematically, while prepayment provides guaranteed peace of mind and debt freedom.
+            </p>
+          </div>
         </div>
       </div>
     </div>

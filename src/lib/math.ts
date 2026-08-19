@@ -1,9 +1,12 @@
 export function formatCurrency(value: number) {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
+  if (isNaN(value) || !isFinite(value)) return "₹0";
+  const isNegative = value < 0;
+  const absValue = Math.abs(value);
+  const formatted = new Intl.NumberFormat("en-IN", {
     maximumFractionDigits: 0,
-  }).format(value);
+  }).format(Math.round(absValue));
+
+  return isNegative ? `-₹${formatted}` : `₹${formatted}`;
 }
 
 // SIP Math

@@ -10,9 +10,6 @@ import { useState, useEffect } from "react"
 const navLinks = [
   { label: "Investment", href: "/calculators/sip" },
   { label: "Loans", href: "/calculators/loan-emi" },
-  { label: "Tax", href: "/calculators/income-tax" },
-  { label: "Health", href: "/health/bmi" },
-  { label: "Age & Date", href: "/age-date/age" },
 ];
 
 export function Navbar() {

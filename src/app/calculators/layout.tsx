@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TrendingUp, PiggyBank, PieChart, Calculator, Target, ArrowUpRight, Scale, Wallet, ArrowRightLeft, FastForward, Home, Building, FileText, Landmark, MapPin } from "lucide-react";
 import { ReactNode } from "react";
-import { DummyAd } from "@/components/shared/DummyAd";
 
 export default function CalculatorsLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -88,9 +87,7 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
             </div>
           ))}
 
-          <div className="mt-8 px-2 flex justify-center">
-            <DummyAd type="square" className="w-full max-w-[200px]" />
-          </div>
+
         </div>
       </aside>
 
@@ -100,10 +97,7 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
           {children}
         </div>
 
-        {/* Ad Placement */}
-        <div className="mt-12 mb-4 w-full flex justify-center">
-          <DummyAd type="horizontal" className="mx-auto" />
-        </div>
+
       </main>
     </div>
   );
