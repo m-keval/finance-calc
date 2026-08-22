@@ -15,7 +15,7 @@ const financeCalculators = [
     title: "SIP Calculator",
     description: "Calculate how much your monthly investments can grow over time with the power of compounding.",
     icon: <TrendingUp className="h-6 w-6" />,
-    href: "/calculators/sip",
+    href: "/calculators/investment/sip-calculator",
     gradient: "from-emerald-500 to-teal-500",
     bgColor: "bg-emerald-50 dark:bg-emerald-950/20",
     iconColor: "text-emerald-600 dark:text-emerald-400",
@@ -24,7 +24,7 @@ const financeCalculators = [
     title: "Step-up SIP",
     description: "Supercharge your wealth by increasing your SIP amount every year as your income grows.",
     icon: <ArrowUpRight className="h-6 w-6" />,
-    href: "/calculators/step-up-sip",
+    href: "/calculators/investment/step-up-sip-calculator",
     gradient: "from-blue-500 to-indigo-500",
     bgColor: "bg-blue-50 dark:bg-blue-950/20",
     iconColor: "text-blue-600 dark:text-blue-400",
@@ -33,7 +33,7 @@ const financeCalculators = [
     title: "Goal Planning",
     description: "Work backwards from your target amount to find out exactly how much you need to invest today.",
     icon: <Target className="h-6 w-6" />,
-    href: "/calculators/goal",
+    href: "/calculators/financial/goal-calculator",
     gradient: "from-violet-500 to-purple-500",
     bgColor: "bg-violet-50 dark:bg-violet-950/20",
     iconColor: "text-violet-600 dark:text-violet-400",
@@ -42,7 +42,7 @@ const financeCalculators = [
     title: "FD Calculator",
     description: "Calculate the maturity amount and interest earned on your Fixed Deposit.",
     icon: <PiggyBank className="h-6 w-6" />,
-    href: "/calculators/fd",
+    href: "/calculators/investment/fd-calculator",
     gradient: "from-amber-500 to-orange-500",
     bgColor: "bg-amber-50 dark:bg-amber-950/20",
     iconColor: "text-amber-600 dark:text-amber-400",
@@ -51,7 +51,7 @@ const financeCalculators = [
     title: "Loan Calculator",
     description: "Calculate your Equated Monthly Installment (EMI) for any loan and see the amortization schedule.",
     icon: <PieChart className="h-6 w-6" />,
-    href: "/calculators/loan-emi",
+    href: "/calculators/loan/emi-calculator",
     gradient: "from-rose-500 to-pink-500",
     bgColor: "bg-rose-50 dark:bg-rose-950/20",
     iconColor: "text-rose-600 dark:text-rose-400",
@@ -60,7 +60,7 @@ const financeCalculators = [
     title: "Inflation Calculator",
     description: "Understand how inflation erodes purchasing power and calculate the future cost of current expenses.",
     icon: <Calculator className="h-6 w-6" />,
-    href: "/calculators/inflation",
+    href: "/calculators/financial/inflation-calculator",
     gradient: "from-sky-500 to-cyan-500",
     bgColor: "bg-sky-50 dark:bg-sky-950/20",
     iconColor: "text-sky-600 dark:text-sky-400",
@@ -122,10 +122,10 @@ export default function Home() {
 
               {/* Heading */}
               <h1 className="animate-fade-in-up stagger-1 text-3xl sm:text-4xl md:text-[42px] font-extrabold tracking-tight leading-[1.12] mb-3">
-                Instant Math &
+                Free Financial,
                 <br />
                 <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-indigo-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
-                  Smart Calculators
+                  Investment & Loan Calculators
                 </span>
               </h1>
 

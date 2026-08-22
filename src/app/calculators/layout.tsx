@@ -12,33 +12,33 @@ export default function CalculatorsLayout({ children }: { children: ReactNode })
     {
       title: "Investment",
       items: [
-        { name: "SIP Calculator", href: "/calculators/sip", icon: <TrendingUp className="w-4 h-4" /> },
-        { name: "Step-up SIP", href: "/calculators/step-up-sip", icon: <ArrowUpRight className="w-4 h-4" /> },
-        { name: "Goal Planning", href: "/calculators/goal", icon: <Target className="w-4 h-4" /> },
-        { name: "SIP vs FD", href: "/calculators/sip-vs-fd", icon: <Scale className="w-4 h-4" /> },
+        { name: "SIP Calculator", href: "/calculators/investment/sip-calculator", icon: <TrendingUp className="w-4 h-4" /> },
+        { name: "Step-up SIP", href: "/calculators/investment/step-up-sip-calculator", icon: <ArrowUpRight className="w-4 h-4" /> },
+        { name: "Goal Planning", href: "/calculators/financial/goal-calculator", icon: <Target className="w-4 h-4" /> },
+        { name: "SIP vs FD", href: "/calculators/investment/sip-vs-fd-calculator", icon: <Scale className="w-4 h-4" /> },
       ]
     },
     {
       title: "Savings",
       items: [
-        { name: "FD Calculator", href: "/calculators/fd", icon: <PiggyBank className="w-4 h-4" /> },
+        { name: "FD Calculator", href: "/calculators/investment/fd-calculator", icon: <PiggyBank className="w-4 h-4" /> },
       ]
     },
 
     {
       title: "Loans",
       items: [
-        { name: "Rent vs Buy", href: "/calculators/rent-vs-buy", icon: <Home className="w-4 h-4" /> },
-        { name: "Eligibility", href: "/calculators/home-loan-eligibility", icon: <Building className="w-4 h-4" /> },
-        { name: "Loan Calculator", href: "/calculators/loan-emi", icon: <PieChart className="w-4 h-4" /> },
-        { name: "Invest vs Repay", href: "/calculators/invest-vs-repay", icon: <Wallet className="w-4 h-4" /> },
-        { name: "Loan Prepayment", href: "/calculators/loan-prepayment", icon: <FastForward className="w-4 h-4" /> },
+        { name: "Rent vs Buy", href: "/calculators/financial/rent-vs-buy-calculator", icon: <Home className="w-4 h-4" /> },
+        { name: "Eligibility", href: "/calculators/loan/home-loan-eligibility-calculator", icon: <Building className="w-4 h-4" /> },
+        { name: "Loan Calculator", href: "/calculators/loan/emi-calculator", icon: <PieChart className="w-4 h-4" /> },
+        { name: "Invest vs Repay", href: "/calculators/financial/invest-vs-repay-calculator", icon: <Wallet className="w-4 h-4" /> },
+        { name: "Loan Prepayment", href: "/calculators/loan/loan-prepayment-calculator", icon: <FastForward className="w-4 h-4" /> },
       ]
     },
     {
       title: "Planning",
       items: [
-        { name: "Inflation Calculator", href: "/calculators/inflation", icon: <Calculator className="w-4 h-4" /> },
+        { name: "Inflation Calculator", href: "/calculators/financial/inflation-calculator", icon: <Calculator className="w-4 h-4" /> },
       ]
     }
   ];

@@ -1,32 +1,45 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { CATEGORIES, getAllCalculators } from '@/lib/seo-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.calcniv.in'
-  
-  const routes = [
-    '',
-    '/calculators/sip',
-    '/calculators/step-up-sip',
-    '/calculators/goal',
-    '/calculators/sip-vs-fd',
-    '/calculators/fd',
-    '/calculators/income-tax',
-    '/calculators/capital-gains',
-    '/calculators/hra',
-    '/calculators/rent-vs-buy',
-    '/calculators/home-loan-eligibility',
-    '/calculators/loan-emi',
-    '/calculators/invest-vs-repay',
-    '/calculators/loan-prepayment',
-    '/age-date/age',
-    '/health/bmi',
-    '/health/ideal-weight',
-  ]
+  const baseUrl = 'https://calcniv.in';
+  const currentDate = new Date();
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : 0.8,
-  }))
+  // Base routes
+  const routes: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/calculators`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+  ];
+
+  // Category routes
+  Object.keys(CATEGORIES).forEach((cat) => {
+    routes.push({
+      url: `${baseUrl}/calculators/${cat}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    });
+  });
+
+  // Individual calculator routes
+  getAllCalculators().forEach((calc) => {
+    routes.push({
+      url: `${baseUrl}/calculators/${calc.category}/${calc.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  });
+
+  return routes;
 }
