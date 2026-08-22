@@ -60,27 +60,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
         answer: 'The SIP calculator uses the compound interest formula to estimate future returns based on your monthly investment amount, expected rate of return, and investment period.'
       }
     ],
-    relatedCalculators: ['lumpsum-calculator', 'step-up-sip-calculator', 'cagr-calculator', 'compound-interest-calculator']
-  },
-  'lumpsum-calculator': {
-    slug: 'lumpsum-calculator',
-    category: 'investment',
-    title: 'Lumpsum Calculator – Mutual Fund Lumpsum Returns | Calcniv',
-    description: 'Calculate your one-time mutual fund investment returns with Calcniv\'s lumpsum calculator. Estimate future wealth with our free tool.',
-    primaryKeyword: 'lumpsum calculator',
-    secondaryKeywords: [
-      'lumpsum investment calculator', 'lumpsum return calculator', 'mutual fund lumpsum calculator',
-      'lumpsum calculator online', 'one time investment calculator'
-    ],
-    h1: 'Lumpsum Calculator',
-    intro: 'Estimate the future value of your one-time mutual fund investments using our lumpsum calculator. Enter your total investment amount, expected rate of return, and time period.',
-    faqs: [
-      {
-        question: 'What is lumpsum investment?',
-        answer: 'Lumpsum investment means investing a significant sum of money in a mutual fund or other asset at one time, rather than in regular intervals like a SIP.'
-      }
-    ],
-    relatedCalculators: ['sip-calculator', 'cagr-calculator', 'compound-interest-calculator']
+    relatedCalculators: ['step-up-sip-calculator', 'cagr-calculator']
   },
   'step-up-sip-calculator': {
     slug: 'step-up-sip-calculator',
@@ -93,7 +73,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     ],
     h1: 'Step Up SIP Calculator',
     intro: 'Plan your long-term wealth creation by factoring in an annual increase in your SIP contributions. Use our Step Up SIP calculator to see how a small percentage increase every year impacts your final maturity amount.',
-    relatedCalculators: ['sip-calculator', 'lumpsum-calculator']
+    relatedCalculators: ['sip-calculator']
   },
   'cagr-calculator': {
     slug: 'cagr-calculator',
@@ -106,20 +86,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     ],
     h1: 'CAGR Calculator',
     intro: 'Calculate the Compound Annual Growth Rate (CAGR) of your investments with our free online tool. Determine the smoothed annualized return of your portfolio over a specific time period.',
-    relatedCalculators: ['sip-calculator', 'lumpsum-calculator', 'compound-interest-calculator']
-  },
-  'compound-interest-calculator': {
-    slug: 'compound-interest-calculator',
-    category: 'financial', // Note: User requested it under both, I will put it in financial for category but link it everywhere. Let's make it financial.
-    title: 'Compound Interest Calculator – Estimate Investment Growth | Calcniv',
-    description: 'Calculate compound interest online to see how your money grows over time. Use our free compound interest calculator with daily, monthly, or yearly compounding.',
-    primaryKeyword: 'compound interest calculator',
-    secondaryKeywords: [
-      'compound interest calculator online', 'compound interest formula', 'investment compound interest calculator', 'compound growth calculator'
-    ],
-    h1: 'Compound Interest Calculator',
-    intro: 'Understand the power of compounding with our free compound interest calculator. Calculate the future value of your initial principal based on the interest rate and compounding frequency.',
-    relatedCalculators: ['simple-interest-calculator', 'sip-calculator']
+    relatedCalculators: ['sip-calculator']
   },
   'emi-calculator': {
     slug: 'emi-calculator',
@@ -138,98 +105,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
         answer: 'EMI stands for Equated Monthly Installment. It is a fixed payment amount made by a borrower to a lender at a specified date each calendar month.'
       }
     ],
-    relatedCalculators: ['home-loan-emi-calculator', 'personal-loan-emi-calculator', 'car-loan-emi-calculator', 'loan-interest-calculator']
-  },
-  'home-loan-emi-calculator': {
-    slug: 'home-loan-emi-calculator',
-    category: 'loan',
-    title: 'Home Loan EMI Calculator – Housing Loan Repayment | Calcniv',
-    description: 'Calculate your home loan EMI online. Estimate your monthly housing loan repayment, total interest, and overall loan cost with Calcniv.',
-    primaryKeyword: 'home loan EMI calculator',
-    secondaryKeywords: [
-      'home loan calculator', 'home loan EMI calculator India', 'housing loan EMI calculator', 'home loan repayment calculator', 'home loan interest calculator'
-    ],
-    h1: 'Home Loan EMI Calculator',
-    intro: 'Planning to buy a house? Use our home loan EMI calculator to estimate your monthly mortgage payments and plan your housing finance better.',
-    relatedCalculators: ['emi-calculator', 'personal-loan-emi-calculator']
-  },
-  'personal-loan-emi-calculator': {
-    slug: 'personal-loan-emi-calculator',
-    category: 'loan',
-    title: 'Personal Loan EMI Calculator – Estimate Monthly Repayment | Calcniv',
-    description: 'Calculate your personal loan EMI accurately online. Plan your finances and monthly budget with our free personal loan calculator.',
-    primaryKeyword: 'personal loan EMI calculator',
-    secondaryKeywords: [
-      'personal loan calculator', 'personal loan EMI calculator India', 'personal loan repayment calculator', 'personal loan interest calculator'
-    ],
-    h1: 'Personal Loan EMI Calculator',
-    intro: 'Calculate the EMI for your personal loan using our free online calculator. Determine your monthly repayment obligations before borrowing.',
-    relatedCalculators: ['emi-calculator', 'home-loan-emi-calculator', 'car-loan-emi-calculator']
-  },
-  'car-loan-emi-calculator': {
-    slug: 'car-loan-emi-calculator',
-    category: 'loan',
-    title: 'Car Loan EMI Calculator – Vehicle Loan EMI | Calcniv',
-    description: 'Use our free car loan EMI calculator to estimate your monthly vehicle loan repayment. Calculate total interest and total amount payable.',
-    primaryKeyword: 'car loan EMI calculator',
-    secondaryKeywords: [
-      'car EMI calculator', 'car loan calculator', 'vehicle loan EMI calculator', 'car loan repayment calculator'
-    ],
-    h1: 'Car Loan EMI Calculator',
-    intro: 'Estimate your monthly car loan repayments quickly and easily with our car loan EMI calculator. Plan your dream vehicle purchase efficiently.',
-    relatedCalculators: ['emi-calculator', 'personal-loan-emi-calculator']
-  },
-  'loan-interest-calculator': {
-    slug: 'loan-interest-calculator',
-    category: 'loan',
-    title: 'Loan Interest Calculator – Calculate Total Interest Payable | Calcniv',
-    description: 'Calculate the total interest on your loan easily. Use our loan interest calculator to find out how much you are paying in interest over the loan tenure.',
-    primaryKeyword: 'loan interest calculator',
-    secondaryKeywords: [
-      'loan interest calculator online', 'loan repayment calculator', 'interest on loan calculator', 'loan interest calculation'
-    ],
-    h1: 'Loan Interest Calculator',
-    intro: 'Find out exactly how much interest you will pay over the life of your loan. Our loan interest calculator breaks down the principal and interest components clearly.',
-    relatedCalculators: ['emi-calculator', 'home-loan-emi-calculator']
-  },
-  'gst-calculator': {
-    slug: 'gst-calculator',
-    category: 'financial',
-    title: 'GST Calculator – Calculate GST Inclusive & Exclusive | Calcniv',
-    description: 'Calculate Goods and Services Tax (GST) easily online. Find GST inclusive and exclusive amounts with Calcniv\'s free GST calculator.',
-    primaryKeyword: 'GST calculator',
-    secondaryKeywords: [
-      'GST calculator online', 'GST calculator India', 'calculate GST', 'GST calculation', 'GST inclusive calculator', 'GST exclusive calculator'
-    ],
-    h1: 'GST Calculator',
-    intro: 'Calculate the Goods and Services Tax (GST) for your products or services. Easily determine both GST inclusive and exclusive prices with our simple tool.',
-    relatedCalculators: ['percentage-calculator', 'simple-interest-calculator']
-  },
-  'percentage-calculator': {
-    slug: 'percentage-calculator',
-    category: 'financial',
-    title: 'Percentage Calculator – Calculate Percentages Online | Calcniv',
-    description: 'Free online percentage calculator. Calculate percentage increase, percentage decrease, and general percentage problems quickly and easily.',
-    primaryKeyword: 'percentage calculator',
-    secondaryKeywords: [
-      'percentage calculator online', 'calculate percentage', 'percentage increase calculator', 'percentage decrease calculator'
-    ],
-    h1: 'Percentage Calculator',
-    intro: 'Solve percentage problems effortlessly with our free percentage calculator. Quickly calculate percentage increases, decreases, and fractions.',
-    relatedCalculators: ['gst-calculator']
-  },
-  'simple-interest-calculator': {
-    slug: 'simple-interest-calculator',
-    category: 'financial',
-    title: 'Simple Interest Calculator – Calculate Interest Accrued | Calcniv',
-    description: 'Calculate simple interest online. Use our free tool to estimate the total interest accrued on loans or investments based on principal, rate, and time.',
-    primaryKeyword: 'simple interest calculator',
-    secondaryKeywords: [
-      'simple interest calculator online', 'simple interest formula', 'interest calculator'
-    ],
-    h1: 'Simple Interest Calculator',
-    intro: 'Calculate simple interest easily with our free online calculator. Determine the interest earned or paid on a principal sum over a specific time period.',
-    relatedCalculators: ['compound-interest-calculator']
+    relatedCalculators: []
   },
   'inflation-calculator': {
     slug: 'inflation-calculator',
@@ -242,7 +118,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     ],
     h1: 'Inflation Calculator',
     intro: 'Understand how inflation erodes purchasing power over time. Use our free inflation calculator to estimate the future value of money and plan your finances accordingly.',
-    relatedCalculators: ['cagr-calculator', 'compound-interest-calculator']
+    relatedCalculators: ['cagr-calculator']
   },
   'goal-calculator': {
     slug: 'goal-calculator',
@@ -253,7 +129,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     secondaryKeywords: ['goal planning calculator', 'savings goal calculator'],
     h1: 'Goal Calculator',
     intro: 'Plan your financial future with our Goal Calculator. Figure out exactly how much you need to save periodically to achieve your target amount.',
-    relatedCalculators: ['sip-calculator', 'compound-interest-calculator']
+    relatedCalculators: ['sip-calculator']
   },
   'capital-gains-calculator': {
     slug: 'capital-gains-calculator',
@@ -308,7 +184,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     secondaryKeywords: ['buy or rent calculator India', 'home rent vs buy'],
     h1: 'Rent vs Buy Calculator',
     intro: 'Making the big housing decision? Our Rent vs Buy Calculator helps you mathematically compare the costs of renting vs purchasing a home.',
-    relatedCalculators: ['home-loan-emi-calculator', 'home-loan-eligibility-calculator']
+    relatedCalculators: ['home-loan-eligibility-calculator']
   },
   'fd-calculator': {
     slug: 'fd-calculator',
@@ -319,7 +195,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     secondaryKeywords: ['fixed deposit calculator', 'FD interest calculator online', 'FD return calculator'],
     h1: 'Fixed Deposit (FD) Calculator',
     intro: 'Estimate the maturity value and total interest earned on your Fixed Deposits. Enter your principal amount, tenure, and interest rate to get instant results.',
-    relatedCalculators: ['sip-vs-fd-calculator', 'compound-interest-calculator']
+    relatedCalculators: ['sip-vs-fd-calculator']
   },
   'sip-vs-fd-calculator': {
     slug: 'sip-vs-fd-calculator',
@@ -341,7 +217,7 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     secondaryKeywords: ['housing loan eligibility', 'home loan limit calculator'],
     h1: 'Home Loan Eligibility Calculator',
     intro: 'Planning to apply for a home loan? Check your maximum eligible loan amount instantly based on your monthly income and current obligations.',
-    relatedCalculators: ['home-loan-emi-calculator', 'rent-vs-buy-calculator']
+    relatedCalculators: ['rent-vs-buy-calculator']
   },
   'loan-prepayment-calculator': {
     slug: 'loan-prepayment-calculator',
