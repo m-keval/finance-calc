@@ -205,45 +205,7 @@ export function HeroCalculator() {
     }
   }, [display, prevValue, currentOperator])
 
-  // Quick Preset Adders (e.g. +18% GST, +5% Tax, -10% Discount, Square)
-  const handleQuickPreset = useCallback((type: "gst18" | "gst5" | "disc10" | "sqr") => {
-    const currentNum = parseFloat(display)
-    if (isNaN(currentNum) || currentNum === 0) return
 
-    let result = 0
-    let label = ""
-
-    if (type === "gst18") {
-      result = currentNum * 1.18
-      label = `${formatDisplayNumber(display)} + 18% GST`
-    } else if (type === "gst5") {
-      result = currentNum * 1.05
-      label = `${formatDisplayNumber(display)} + 5% GST`
-    } else if (type === "disc10") {
-      result = currentNum * 0.90
-      label = `${formatDisplayNumber(display)} - 10% OFF`
-    } else if (type === "sqr") {
-      result = currentNum * currentNum
-      label = `sqr(${formatDisplayNumber(display)})`
-    }
-
-    const cleanRes = cleanNumber(result)
-    setHistory((prev) => [
-      {
-        id: Date.now().toString(),
-        expression: label,
-        result: formatDisplayNumber(cleanRes),
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      },
-      ...prev.slice(0, 19),
-    ])
-
-    setEquation(`${label} =`)
-    setDisplay(cleanRes)
-    setPrevValue(null)
-    setCurrentOperator(null)
-    setIsNewNumber(true)
-  }, [display])
 
   // Copy result to clipboard
   const handleCopy = () => {
@@ -454,41 +416,7 @@ export function HeroCalculator() {
               )}
             </div>
 
-            {/* Quick Flat Shortcuts Row - Exact same grid-cols-4 and gap-2.5 as keypad */}
-            <div className="grid grid-cols-4 gap-2.5 mb-2.5">
-              <button
-                type="button"
-                onClick={() => handleQuickPreset("gst18")}
-                className="h-8 rounded-lg text-xs font-semibold bg-muted hover:bg-muted/80 text-foreground border border-border active:scale-95 transition-all text-center truncate cursor-pointer tracking-tight"
-                title="Add 18% GST"
-              >
-                +18% GST
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickPreset("gst5")}
-                className="h-8 rounded-lg text-xs font-semibold bg-muted hover:bg-muted/80 text-foreground border border-border active:scale-95 transition-all text-center truncate cursor-pointer tracking-tight"
-                title="Add 5% GST"
-              >
-                +5% GST
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickPreset("disc10")}
-                className="h-8 rounded-lg text-xs font-semibold bg-muted hover:bg-muted/80 text-foreground border border-border active:scale-95 transition-all text-center truncate cursor-pointer tracking-tight"
-                title="Apply 10% Discount"
-              >
-                -10% OFF
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickPreset("sqr")}
-                className="h-8 rounded-lg text-xs font-semibold bg-muted hover:bg-muted/80 text-foreground border border-border active:scale-95 transition-all text-center truncate cursor-pointer tracking-tight"
-                title="Square (x²)"
-              >
-                x²
-              </button>
-            </div>
+
 
             {/* Keypad Grid (5 rows with matching gap-2.5 all around) */}
             <div className="grid grid-cols-4 gap-2.5">

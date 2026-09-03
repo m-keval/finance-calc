@@ -55,6 +55,22 @@ export default function CAGRPage() {
           </div>
         </div>
 
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            Why Use CAGR Over Absolute Return?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-sm mb-2 text-foreground">Absolute Return is Misleading</h4>
+              <p className="text-xs text-muted-foreground">Absolute return simply tells you how much your investment grew from point A to point B. For example, a 50% return looks great, but if it took 10 years to achieve, it's a very poor performance (less than 5% per year).</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-sm mb-2 text-foreground">CAGR Normalizes Time</h4>
+              <p className="text-xs text-muted-foreground">CAGR gives you the annualized rate of return, assuming constant growth. This allows you to fairly compare a 3-year investment with a 5-year investment to see which one actually performed better on an annualized basis.</p>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-16 space-y-8">
           <CalculatorFAQ seoData={seoData} />
           <RelatedCalculators seoData={seoData} />

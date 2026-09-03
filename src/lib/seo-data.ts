@@ -53,11 +53,23 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     faqs: [
       {
         question: 'What is a SIP?',
-        answer: 'SIP stands for Systematic Investment Plan. It is a method of investing a fixed amount regularly in mutual funds.'
+        answer: 'SIP stands for Systematic Investment Plan. It is a method of investing a fixed amount regularly in mutual funds, allowing you to build wealth over time through the power of compounding.'
       },
       {
         question: 'How does the SIP calculator work?',
-        answer: 'The SIP calculator uses the compound interest formula to estimate future returns based on your monthly investment amount, expected rate of return, and investment period.'
+        answer: 'The SIP calculator uses the compound interest formula to estimate future returns based on your monthly investment amount, expected rate of return, and investment period. It assumes your returns are reinvested.'
+      },
+      {
+        question: 'Is SIP better than lumpsum investment?',
+        answer: 'SIPs are generally better for salaried individuals who want to invest regularly. They help in rupee cost averaging, meaning you buy more units when the market is low and fewer when it is high, reducing overall risk compared to timing the market with a lumpsum.'
+      },
+      {
+        question: 'Can I change my SIP amount later?',
+        answer: 'Yes, most mutual fund houses allow you to modify, pause, or stop your SIPs at any time without any penalties.'
+      },
+      {
+        question: 'Are SIP returns guaranteed?',
+        answer: 'No, SIP returns are market-linked and not guaranteed. However, historically, equity mutual funds have provided higher inflation-beating returns over the long term (7-10+ years) compared to fixed deposits.'
       }
     ],
     relatedCalculators: ['step-up-sip-calculator', 'cagr-calculator']
@@ -86,6 +98,24 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     ],
     h1: 'CAGR Calculator',
     intro: 'Calculate the Compound Annual Growth Rate (CAGR) of your investments with our free online tool. Determine the smoothed annualized return of your portfolio over a specific time period.',
+    faqs: [
+      {
+        question: 'What is CAGR?',
+        answer: 'Compound Annual Growth Rate (CAGR) is the measure of an investments annual growth rate over time, assuming profits were reinvested at the end of each year.'
+      },
+      {
+        question: 'Why is CAGR important?',
+        answer: 'CAGR smooths out the volatility of market returns. Instead of showing wild swings year-over-year, it provides a single, steady rate at which your investment would have grown if it grew at a constant rate.'
+      },
+      {
+        question: 'What is a good CAGR?',
+        answer: 'A "good" CAGR depends on the asset class and inflation. For equity mutual funds in India, a long-term CAGR of 12% to 15% is generally considered good. For debt funds, it might be 6% to 8%.'
+      },
+      {
+        question: 'How is CAGR different from absolute return?',
+        answer: 'Absolute return only measures the total growth percentage from start to finish, ignoring the time it took. CAGR factors in the time period, giving you the annualized growth rate, which is better for comparing investments of different durations.'
+      }
+    ],
     relatedCalculators: ['sip-calculator']
   },
   'emi-calculator': {
@@ -102,7 +132,19 @@ export const CALCULATORS_SEO: Record<string, CalculatorSEOData> = {
     faqs: [
       {
         question: 'What is an EMI?',
-        answer: 'EMI stands for Equated Monthly Installment. It is a fixed payment amount made by a borrower to a lender at a specified date each calendar month.'
+        answer: 'EMI stands for Equated Monthly Installment. It is a fixed payment amount made by a borrower to a lender at a specified date each calendar month, covering both principal and interest.'
+      },
+      {
+        question: 'How is EMI calculated?',
+        answer: 'EMI is calculated using the formula: E = P x R x (1+R)^N / [(1+R)^N-1], where P is Principal, R is monthly interest rate, and N is tenure in months.'
+      },
+      {
+        question: 'How does loan tenure affect my EMI?',
+        answer: 'A longer loan tenure significantly reduces your monthly EMI, making it easier to pay. However, it also dramatically increases the total interest you will pay over the life of the loan.'
+      },
+      {
+        question: 'Does my EMI change over time?',
+        answer: 'For a fixed-rate loan, your EMI remains constant. For a floating-rate loan, your EMI or loan tenure may change when the lender revises their benchmark interest rates.'
       }
     ],
     relatedCalculators: []

@@ -137,13 +137,13 @@ export default function Home() {
               {/* Quick Jump Pills */}
               <div className="animate-fade-in-up stagger-2 flex flex-wrap gap-1.5 justify-center lg:justify-start mb-5">
                 <Link
-                  href="/calculators/sip"
+                  href="/calculators/investment/sip-calculator"
                   className="inline-flex items-center gap-1.5 rounded-lg bg-card border border-border/70 hover:border-brand-300 dark:hover:border-brand-700 px-2.5 py-1 text-[11px] font-semibold text-foreground hover:text-brand-600 transition-all shadow-xs hover:-translate-y-0.5"
                 >
                   <TrendingUp className="h-3 w-3 text-emerald-500" /> SIP Return
                 </Link>
                 <Link
-                  href="/calculators/loan-emi"
+                  href="/calculators/loan/emi-calculator"
                   className="inline-flex items-center gap-1.5 rounded-lg bg-card border border-border/70 hover:border-brand-300 dark:hover:border-brand-700 px-2.5 py-1 text-[11px] font-semibold text-foreground hover:text-brand-600 transition-all shadow-xs hover:-translate-y-0.5"
                 >
                   <PieChart className="h-3 w-3 text-rose-500" /> Loan EMI
@@ -252,7 +252,7 @@ export default function Home() {
           {/* View All Link */}
           <div className="mt-12 text-center">
             <Link
-              href="/calculators/sip"
+              href="/calculators"
               className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors group"
             >
               View All 20+ Calculators
@@ -308,7 +308,7 @@ export default function Home() {
                 Use our calculators to make informed decisions about investments, loans, and savings.
               </p>
               <Link
-                href="/calculators/sip"
+                href="/calculators"
                 className={buttonVariants({
                   size: "lg",
                   className: "h-13 px-8 text-base font-semibold rounded-xl !bg-white !text-brand-700 hover:!bg-white/90 shadow-xl shadow-black/10 hover:-translate-y-0.5 transition-all duration-300",

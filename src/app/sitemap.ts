@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { CATEGORIES, getAllCalculators } from '@/lib/seo-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://calcniv.in';
+  const baseUrl = 'https://www.calcniv.in';
   const currentDate = new Date();
 
   // Base routes

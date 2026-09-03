@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CalculatorSEOData, CATEGORIES, CalculatorCategory } from './seo-data';
 
-const SITE_URL = 'https://calcniv.in';
+const SITE_URL = 'https://www.calcniv.in';
 
 export function constructMetadata({
   title,

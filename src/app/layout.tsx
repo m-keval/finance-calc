@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Outfit, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AdBanner } from "@/components/shared/AdBanner";
 import { ScrollRestorationReset } from "@/components/shared/ScrollRestorationReset";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 
 const outfitFont = Outfit({
   subsets: ["latin"],
@@ -59,12 +59,10 @@ export default function RootLayout({
       className={`${outfitFont.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <Script
-          id="adsense"
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6742401640080288"
           crossOrigin="anonymous"
-          strategy="lazyOnload"
         />
       </head>
       <body suppressHydrationWarning className={`min-h-full flex flex-col font-sans antialiased`}>
@@ -82,6 +80,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>

@@ -35,16 +35,16 @@ function IndiaFlag({ className = "w-5 h-3.5" }: { className?: string }) {
 }
 
 const calculatorLinks = [
-  { label: "SIP Calculator", href: "/calculators/sip" },
-  { label: "FD Calculator", href: "/calculators/fd" },
-  { label: "Loan EMI Calculator", href: "/calculators/loan-emi" },
-  { label: "Inflation Calculator", href: "/calculators/inflation" },
+  { label: "SIP Calculator", href: "/calculators/investment/sip-calculator" },
+  { label: "FD Calculator", href: "/calculators/investment/fd-calculator" },
+  { label: "Loan EMI Calculator", href: "/calculators/loan/emi-calculator" },
+  { label: "Inflation Calculator", href: "/calculators/financial/inflation-calculator" },
 ];
 
 const moreLinks = [
-  { label: "SIP vs FD", href: "/calculators/sip-vs-fd" },
-  { label: "Rent vs Buy", href: "/calculators/rent-vs-buy" },
-  { label: "HRA Exemption", href: "/calculators/hra" },
+  { label: "SIP vs FD", href: "/calculators/investment/sip-vs-fd-calculator" },
+  { label: "Rent vs Buy", href: "/calculators/financial/rent-vs-buy-calculator" },
+  { label: "HRA Exemption", href: "/calculators/financial/hra-calculator" },
 ];
 
 export function Footer() {
@@ -60,7 +60,8 @@ export function Footer() {
                 alt="CalcNiv Logo"
                 width={100}
                 height={32}
-                className="h-8 w-auto"
+                className="h-8"
+                style={{ width: "auto" }}
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">

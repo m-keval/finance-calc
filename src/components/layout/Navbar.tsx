@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 
 const navLinks = [
-  { label: "Investment", href: "/calculators/sip" },
-  { label: "Loans", href: "/calculators/loan-emi" },
+  { label: "Investment", href: "/calculators/investment/sip-calculator" },
+  { label: "Loans", href: "/calculators/loan/emi-calculator" },
 ];
 
 export function Navbar() {
@@ -43,7 +43,9 @@ export function Navbar() {
                 alt="CalcNiv Logo"
                 width={100}
                 height={34}
-                className="h-8 w-auto"
+                priority
+                className="h-8"
+                style={{ width: "auto" }}
               />
             </div>
           </Link>
